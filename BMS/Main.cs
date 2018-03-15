@@ -28,8 +28,8 @@ namespace BMS
         /// <param name="e"></param>
         private void Main_Load(object sender, EventArgs e)
         {
-            InitForm();
-            btnSearch_Click(null, null);
+            //InitForm();
+            //btnSearch_Click(null, null);
         }
         /// <summary>
         /// 查询
@@ -183,24 +183,24 @@ namespace BMS
         /// </summary>
         private void InitForm()
         {
-            dtDateStart.Value = Convert.ToDateTime("2008-01-01");
-            dtDateEnd.Value = DateTime.Now;
+            //dtDateStart.Value = Convert.ToDateTime("2008-01-01");
+            //dtDateEnd.Value = DateTime.Now;
 
-            dgvMain.AllowUserToOrderColumns = true;
-            dgvMain.AllowUserToResizeColumns = true;
-            dgvMain.AllowUserToResizeRows = true;
+            //dgvMain.AllowUserToOrderColumns = true;
+            //dgvMain.AllowUserToResizeColumns = true;
+            //dgvMain.AllowUserToResizeRows = true;
 
-            OleDbDataAdapter ada = new OleDbDataAdapter("select '0' as ID,'请选择'as Place from place union Select ID,Place from Place", connection);
-            System.Data.DataTable dt = new System.Data.DataTable();
-            using (connection)
-            {
-                ada.Fill(dt);
-                cobxBelong.DataSource = dt;
-                cobxBelong.ValueMember = "ID";
-                cobxBelong.DisplayMember = "Place";
-            }
-            cobxIsRight.SelectedIndex = 0;
-            cobxStruct.SelectedIndex = 0;
+            //OleDbDataAdapter ada = new OleDbDataAdapter("select '0' as ID,'请选择'as Place from place union Select ID,Place from Place", connection);
+            //System.Data.DataTable dt = new System.Data.DataTable();
+            //using (connection)
+            //{
+            //    ada.Fill(dt);
+            //    cobxBelong.DataSource = dt;
+            //    cobxBelong.ValueMember = "ID";
+            //    cobxBelong.DisplayMember = "Place";
+            //}
+            //cobxIsRight.SelectedIndex = 0;
+            //cobxStruct.SelectedIndex = 0;
         }
         /// <summary>
         /// 查询数据

@@ -13,7 +13,7 @@
     <ManifestCertificateThumbprint>6AD1E7ED2895E3086B2BD14F77607A77B892CB41</ManifestCertificateThumbprint>
     <ManifestKeyFile>BMS_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <ApplicationIcon>Clock-2.ico</ApplicationIcon>
     <FileUpgradeFlags>
