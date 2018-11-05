@@ -7,15 +7,16 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Configuration;
+using BMS.Model;
+
 namespace BMS
 {
     public partial class Add : Form
     {
 
-        #region 变量
-        public static readonly String connectionString = ConfigurationManager.ConnectionStrings["BMSConnectionString"].ConnectionString;
-        public OleDbConnection connection = new OleDbConnection(connectionString);
-        public string strID = string.Empty;
+        #region 变量 
+        public string ModifyType = "new";
+        public Guid strID = Guid.NewGuid();
         #endregion
 
         #region 事件
@@ -37,94 +38,67 @@ namespace BMS
         {
             if (CanSave())
             {
-                try
+                string strSql = string.Empty;
+                if (ModifyType == "new")
                 {
-                    connection = new OleDbConnection(connectionString);
-                    connection.Open();
-
-                    string strSql = string.Empty;
-                    if (string.IsNullOrEmpty(strID))
+                    var entity = new Project
                     {
-                        OleDbDataAdapter ada = new OleDbDataAdapter("Select Max(ID) from Project ", connection);
-                        DataTable dt = new DataTable();
-                        ada.Fill(dt);
-                        if (dt.Rows[0][0] != DBNull.Value)
-                        {
-                            strID = Convert.ToString(Convert.ToInt32(dt.Rows[0][0]) + 1);
-                        }
-                        else
-                        {
-                            strID = "1";
-                        }
-                        strSql = "insert into Project"
-                                      + " values('"
-                                      + strID + "'"
-                                      + ",'" + txtProjectName.Text.Trim() + "'"
-                                      + ",'" + cobxStruct.Text + "'"
-                                      + "," + cobxArea.SelectedValue.ToString()
-                                      + ",'" + txtAddress.Text.Trim() + "'"
-                                      + ",'" + txtBuildUnit.Text.Trim() + "'"
-                                      + ",'" + txtWorkUnit.Text.Trim() + "'"
-                                      + ",'" + txtInCharge.Text.Trim() + "'"
-                                      + ",'" + txtConact.Text.Trim() + "'"
-                                      + ",'" + txtDesUnit.Text.Trim() + "'"
-                                      + ",#" + dtStartWork.Value.ToString("yyyy-MM-dd") + "#"
-                                      + ",'" + txtArea.Text.Trim() + "'"
-                                      + ",'" + txtViewProc.Text.Trim() + "'"
-                                      + "," + (rbtnTrue.Checked ? "True" : "False")
-                                      + ",#" + dtCheckDate.Value.ToString("yyyy-MM-dd") + "#"
-                                      + ",'" + txtRemark.Text.Trim() + "'"
-                                      + ",#" + DateTime.Now.ToString("yyyy-MM-dd") + "#"
-                                      + ")";
-                    }
-                    else
+                        Id = Guid.NewGuid(),
+                        Code = txtCode.Text.Trim(),
+                        ProjectName = txtProjectName.Text.Trim(),
+                        Address = txtAddress.Text.Trim(),
+                        Place = cobxPlace.SelectedValue.ToInt(),
+                        BuildUnit = txtBuildUnit.Text.Trim(),
+                        ConstructUnit = cobxConstructUnit.SelectedValue.ToInt(),
+                        DesignUnit = cobxDesignUnit.SelectedValue.ToInt(),
+                        BuildStruct = cobxBuildStruct.SelectedValue.ToInt(),
+                        ReportCondition = cobxReportCondition.SelectedValue.ToInt(),
+                        SupervisorUnit = comboSupervisorUnit.SelectedValue.ToInt(),
+                        WorkChargre = txtWorkChargre.Text.Trim(),
+                        Contact = txtContact.Text.Trim(),
+                        ProjectDesc = txtProjectDesc.Text.Trim(),
+                        ProjectProgress = txtProjectProgress.Text.Trim(),
+                        WorkStartDate = dtWorkStartDate.Value,
+                        CheckDate = dtCheckDate.Value,
+                        BuildArea = txtBuildArea.Text.Trim(),
+                        InvestigateCase = txtInvestigateCase.Text.Trim(),
+                        Remark = txtRemark.Text.Trim(),
+                        CreateDate = DateTime.Now
+                    };
+
+                    DataService.AddProject(entity);
+                }
+                else
+                {
+                    var entity = new Project
                     {
-                        strSql = "Update Project Set"
-                                + " ProjectName='" + txtProjectName.Text.Trim() + "',"
-                                + " Struct='" + cobxStruct.Text + "',"
-                                + " Place=" + cobxArea.SelectedValue.ToString() + ","
-                                + " Address='" + txtAddress.Text.Trim() + "',"
-                                + " BuildUnit='" + txtBuildUnit.Text.Trim() + "',"
-                                + " WorkUnit='" + txtWorkUnit.Text.Trim() + "',"
-                                + " WorkChargre='" + txtInCharge.Text.Trim() + "',"
-                                + " Conact='" + txtConact.Text.Trim() + "',"
-                                + " DesUnit='" + txtDesUnit.Text.Trim() + "',"
-                                + " WorkStartDate=#" + dtStartWork.Value.ToString("yyyy-MM-dd") + "#,"
-                                + " BuildArea='" + txtArea.Text.Trim() + "',"
-                                + " ViewProc='" + txtViewProc.Text.Trim() + "',"
-                                + " IsRight=" + (rbtnTrue.Checked ? "True" : "False") + ","
-                                + " CheckDate=#" + dtCheckDate.Value.ToString("yyyy-MM-dd") + "#,"
-                                + " Remark='" + txtRemark.Text.Trim() + "'"
-                                + " where ID=" + strID + "";
+                        Id = strID,
+                        Code = txtCode.Text.Trim(),
+                        ProjectName = txtProjectName.Text.Trim(),
+                        Address = txtAddress.Text.Trim(),
+                        Place = cobxPlace.SelectedValue.ToInt(),
+                        BuildUnit = txtBuildUnit.Text.Trim(),
+                        ConstructUnit = cobxConstructUnit.SelectedValue.ToInt(),
+                        DesignUnit = cobxDesignUnit.SelectedValue.ToInt(),
+                        BuildStruct = cobxBuildStruct.SelectedValue.ToInt(),
+                        ReportCondition = cobxReportCondition.SelectedValue.ToInt(),
+                        SupervisorUnit = comboSupervisorUnit.SelectedValue.ToInt(),
+                        WorkChargre = txtWorkChargre.Text.Trim(),
+                        Contact = txtContact.Text.Trim(),
+                        ProjectDesc = txtProjectDesc.Text.Trim(),
+                        ProjectProgress = txtProjectProgress.Text.Trim(),
+                        WorkStartDate = dtWorkStartDate.Value,
+                        CheckDate = dtCheckDate.Value,
+                        BuildArea = txtBuildArea.Text.Trim(),
+                        InvestigateCase = txtInvestigateCase.Text.Trim(),
+                        Remark = txtRemark.Text.Trim()
+                    };
 
-                    }
-                    OleDbCommand cmd = new OleDbCommand(strSql, connection);
-                    cmd.ExecuteNonQuery();
+                    DataService.UpdateProject(entity);
                 }
-
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-                finally
-                {
-                    connection.Close();
-                }
-
                 this.Close();
             }
         }
-
-        /// <summary>
-        /// 退出
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         #endregion
 
         #region 方法
@@ -137,43 +111,44 @@ namespace BMS
         /// </summary>
         private void InitForm()
         {
-            cobxStruct.SelectedIndex = 0;
-            OleDbDataAdapter ada = new OleDbDataAdapter("Select * from Place", connection);
-            DataTable dt = new DataTable();
-            using (connection)
-            {
-                ada.Fill(dt);
-                cobxArea.DataSource = dt;
-                cobxArea.ValueMember = "ID";
-                cobxArea.DisplayMember = "Place";
-            }
+            var listPlace = DataService.GetAllMetadata(MetaDataType.Place);
+            var listBuildStruct = DataService.GetAllMetadata(MetaDataType.BuildStruct);
+            var listReportCondition = DataService.GetAllMetadata(MetaDataType.ReportCondition);
+            var listDesignUnit = DataService.GetAllMetadata(MetaDataType.DesignUnit);
+            var listConstructUnit = DataService.GetAllMetadata(MetaDataType.ConstructUnit);
+            var listSupervisorUnit = DataService.GetAllMetadata(MetaDataType.SupervisorUnit); 
 
-            if (!string.IsNullOrEmpty(strID))
+            cobxPlace.DataSource = listPlace;
+            cobxBuildStruct.DataSource = listBuildStruct;
+            cobxReportCondition.DataSource = listReportCondition;
+            cobxConstructUnit.DataSource = listConstructUnit;
+            cobxDesignUnit.DataSource = listDesignUnit;
+            comboSupervisorUnit.DataSource = listSupervisorUnit;
+
+            if (ModifyType != "new")
             {
-                connection = new OleDbConnection(connectionString);
-                ada = new OleDbDataAdapter("Select * from Project where ID=" + strID + "", connection);
-                using (connection)
+                var project = DataService.GetProject(strID);
+                if (project != null)
                 {
-                    DataTable dt2 = new DataTable();
-                    ada.Fill(dt2);
-                    if (dt != null && dt.Rows.Count > 0)
-                    {
-                        txtProjectName.Text = dt2.Rows[0]["ProjectName"].ToString();
-                        cobxStruct.SelectedIndex = (dt2.Rows[0]["Struct"].ToString() == "搭建" ? 0 : 1);
-                        cobxArea.SelectedValue = Convert.ToInt32(dt2.Rows[0]["Place"]);
-                        txtAddress.Text = dt2.Rows[0]["Address"].ToString();
-                        txtBuildUnit.Text = dt2.Rows[0]["BuildUnit"].ToString();
-                        txtWorkUnit.Text = dt2.Rows[0]["WorkUnit"].ToString();
-                        txtInCharge.Text = dt2.Rows[0]["WorkChargre"].ToString();
-                        txtConact.Text = dt2.Rows[0]["Conact"].ToString();
-                        txtDesUnit.Text = dt2.Rows[0]["DesUnit"].ToString();
-                        dtStartWork.Value = Convert.ToDateTime(dt2.Rows[0]["WorkStartDate"]);
-                        txtArea.Text = dt2.Rows[0]["BuildArea"].ToString();
-                        txtViewProc.Text = dt2.Rows[0]["ViewProc"].ToString();
-                        rbtnTrue.Checked = Convert.ToBoolean(dt2.Rows[0]["IsRight"]);
-                        dtCheckDate.Value = Convert.ToDateTime(dt2.Rows[0]["CheckDate"]);
-                        txtRemark.Text = dt2.Rows[0]["Remark"].ToString();
-                    }
+                    txtCode.Text = project.Code;
+                    txtProjectName.Text = project.ProjectName;
+                    txtAddress.Text = project.Address;
+                    cobxPlace.SelectedValue = project.Place;
+                    txtBuildUnit.Text = project.BuildUnit;
+                    cobxConstructUnit.SelectedValue = project.ConstructUnit;
+                    cobxDesignUnit.SelectedValue = project.DesignUnit;
+                    cobxBuildStruct.SelectedValue = project.BuildStruct;
+                    cobxReportCondition.SelectedValue = project.ReportCondition;
+                    comboSupervisorUnit.SelectedValue = project.SupervisorUnit;
+                    txtWorkChargre.Text = project.WorkChargre;
+                    txtContact.Text = project.Contact;
+                    txtProjectDesc.Text = project.ProjectDesc;
+                    txtProjectProgress.Text = project.ProjectProgress;
+                    dtWorkStartDate.Value = project.WorkStartDate;
+                    dtCheckDate.Value = project.CheckDate.HasValue ? project.CheckDate.Value : DateTime.Now;
+                    txtBuildArea.Text = project.BuildArea;
+                    txtInvestigateCase.Text = project.InvestigateCase;
+                    txtRemark.Text = project.Remark;
                 }
             }
 
@@ -191,10 +166,6 @@ namespace BMS
         }
         #endregion
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            Image img = new Image();
-            img.Show();
-        }
+
     }
 }

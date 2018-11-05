@@ -4,17 +4,17 @@
   <description asmv2:publisher="BMS" asmv2:product="BMS" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" />
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
-    <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
+    <framework targetVersion="4.6" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="BMS.exe.manifest" size="4967">
+    <dependentAssembly dependencyType="install" codebase="BMS.exe.manifest" size="11173">
       <assemblyIdentity name="BMS.exe" version="1.0.0.5" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>UX8qIeFxHUkUC34irr0lRaX19B4pj47fKiAHI/6nfiw=</dsig:DigestValue>
+        <dsig:DigestValue>YdDXk542WOEq0uWnquM/JGfOl34ETb9ITHSo+LGU/Xw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

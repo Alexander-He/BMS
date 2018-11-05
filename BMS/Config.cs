@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Configuration;
+using BMS.Model;
 
 namespace BMS
 {
@@ -17,10 +18,7 @@ namespace BMS
             InitializeComponent();
         }
 
-        #region 变量
-        public static readonly String connectionString = ConfigurationManager.ConnectionStrings["BMSConnectionString"].ConnectionString;
-        public OleDbConnection connection = new OleDbConnection(connectionString);
-        #endregion
+      
 
         #region 事件
         /// <summary>
@@ -44,39 +42,18 @@ namespace BMS
         /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
-            connection = new OleDbConnection(connectionString);
-            try
-            {
-                connection.Open();
-                OleDbCommand cmd = new OleDbCommand("select Max(ID) from Place ", connection);
-                DataTable dt = new DataTable();
-                OleDbDataAdapter ada = new OleDbDataAdapter(cmd);
-                ada.Fill(dt);
-                string strSql = string.Empty;
-                if (txtPlace.Tag == null)
-                {
-                    txtPlace.Tag = Convert.ToInt32(dt.Rows[0][0]) + 1;
-                    strSql = "insert into Place values( " + txtPlace.Tag.ToString() + ",'" + txtPlace.Text.Trim() + "','')";
-                }
-                else
-                    strSql = "Update Place set place='" + txtPlace.Text.Trim() + "' where ID=" + txtPlace.Tag.ToString();
-                cmd = new OleDbCommand(strSql, connection);
-                cmd.ExecuteNonQuery();
+           
+                PropertyMetadata item = new PropertyMetadata();
+
+                DataService.AddMetadata(item);
+             
 
                 lblTip.Visible = false;
                 txtPlace.Visible = false;
                 btnSave.Visible = false;
                 txtPlace.Tag = null;
 
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                connection.Close();
-            }
+         
             LoadData();
         }
         /// <summary>
@@ -104,38 +81,38 @@ namespace BMS
         /// <param name="e"></param>
         private void btnDel_Click(object sender, EventArgs e)
         {
-            if (lbxPlace.SelectedItem != null)
-            {
-                connection = new OleDbConnection(connectionString);
-                try
-                {
-                    connection.Open();
-                    OleDbCommand cmd = new OleDbCommand("select Count(ID) from Project where Place=" + lbxPlace.SelectedValue + "", connection);
-                    DataTable dt = new DataTable();
-                    OleDbDataAdapter ada = new OleDbDataAdapter(cmd);
-                    ada.Fill(dt);
-                    if (Convert.ToInt32(dt.Rows[0][0]) > 0)
-                    {
-                        MessageBox.Show("所选中的所属地仍然有工程项目在使用，不能删除。");
-                        return;
-                    }
-                    if (MessageBox.Show("删除所属地", "确认要删除选中的所属地吗？", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                    {
-                        cmd = new OleDbCommand("Delete from Place where ID=" + lbxPlace.SelectedValue, connection);
-                        cmd.ExecuteNonQuery();
+            //if (lbxPlace.SelectedItem != null)
+            //{
+            //    connection = new OleDbConnection(connectionString);
+            //    try
+            //    {
+            //        connection.Open();
+            //        OleDbCommand cmd = new OleDbCommand("select Count(ID) from Project where Place=" + lbxPlace.SelectedValue + "", connection);
+            //        DataTable dt = new DataTable();
+            //        OleDbDataAdapter ada = new OleDbDataAdapter(cmd);
+            //        ada.Fill(dt);
+            //        if (Convert.ToInt32(dt.Rows[0][0]) > 0)
+            //        {
+            //            MessageBox.Show("所选中的所属地仍然有工程项目在使用，不能删除。");
+            //            return;
+            //        }
+            //        if (MessageBox.Show("删除所属地", "确认要删除选中的所属地吗？", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            //        {
+            //            cmd = new OleDbCommand("Delete from Place where ID=" + lbxPlace.SelectedValue, connection);
+            //            cmd.ExecuteNonQuery();
 
-                    }
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
-                finally
-                {
-                    connection.Close();
-                }
-                LoadData();
-            }
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        throw ex;
+            //    }
+            //    finally
+            //    {
+            //        connection.Close();
+            //    }
+            //    LoadData();
+            //}
         }
         /// <summary>
         /// Load
@@ -166,27 +143,11 @@ namespace BMS
         /// </summary>
         private void LoadData()
         {
-            DataTable dt = new DataTable();
-            connection = new OleDbConnection(connectionString);
-            try
-            {
-                connection.Open();
-                OleDbCommand cmd = new OleDbCommand("select * from Place", connection);
-                OleDbDataAdapter ada = new OleDbDataAdapter(cmd);
-                ada.Fill(dt);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                connection.Close();
-            }
+            var list = DataService.GetAllMetadata();
 
-            lbxPlace.DataSource = dt;
-            lbxPlace.ValueMember = "ID";
-            lbxPlace.DisplayMember = "Place";
+            lbxPlace.DataSource = list;
+            lbxPlace.ValueMember = "Id";
+            lbxPlace.DisplayMember = "Name";
         }
         #endregion
     }
