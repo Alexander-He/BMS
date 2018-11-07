@@ -31,6 +31,13 @@ namespace BMS
         /// <param name="e"></param>
         private void Main_Load(object sender, EventArgs e)
         {
+            PropertyMetadata item = new PropertyMetadata();
+            item.Id = 10;
+            item.Type = "asd";
+            item.Name = "test1";
+            item.Remark = "aa";
+            DataService.AddMetadata(item);
+
             InitForm();
             btnSearch_Click(null, null);
         }
@@ -269,39 +276,43 @@ namespace BMS
                 MessageBox.Show(ex.Message);
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         #endregion
 
+        private void label6_Click(object sender, EventArgs e)
+        {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        }
     }
 }

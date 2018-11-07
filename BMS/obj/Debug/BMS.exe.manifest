@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BMS.exe" size="240128">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BMS.exe" size="242688">
       <assemblyIdentity name="BMS" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>kyFhBcUh8GEXx14QsD4kIEakN8liM77m7UzcTHhoSnM=</dsig:DigestValue>
+        <dsig:DigestValue>l+3i4j/6Dy+qp1KO6hlivWXMR8vmCItc4UkjRewKnyU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

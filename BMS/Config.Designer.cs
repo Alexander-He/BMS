@@ -29,38 +29,57 @@ namespace BMS
         private void InitializeComponent()
         {
             this.gbxPlaceBelong = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtRemark = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblTip = new System.Windows.Forms.Label();
-            this.txtPlace = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
             this.btnDel = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.lbxPlace = new System.Windows.Forms.ListBox();
-            this.txtRemark = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.domainUpDown1 = new System.Windows.Forms.DomainUpDown();
+            this.lbxMetadata = new System.Windows.Forms.ListBox();
+            this.txtMetadataRemark = new System.Windows.Forms.TextBox();
+            this.cobxMetedataType = new System.Windows.Forms.ComboBox();
+            this.lblId = new System.Windows.Forms.Label();
             this.gbxPlaceBelong.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbxPlaceBelong
             // 
-            this.gbxPlaceBelong.Controls.Add(this.domainUpDown1);
+            this.gbxPlaceBelong.Controls.Add(this.lblId);
+            this.gbxPlaceBelong.Controls.Add(this.cobxMetedataType);
             this.gbxPlaceBelong.Controls.Add(this.label1);
             this.gbxPlaceBelong.Controls.Add(this.txtRemark);
             this.gbxPlaceBelong.Controls.Add(this.btnSave);
             this.gbxPlaceBelong.Controls.Add(this.lblTip);
-            this.gbxPlaceBelong.Controls.Add(this.txtPlace);
+            this.gbxPlaceBelong.Controls.Add(this.txtName);
             this.gbxPlaceBelong.Controls.Add(this.btnDel);
             this.gbxPlaceBelong.Controls.Add(this.btnAdd);
-            this.gbxPlaceBelong.Controls.Add(this.lbxPlace);
-            this.gbxPlaceBelong.Controls.Add(this.textBox2);
+            this.gbxPlaceBelong.Controls.Add(this.lbxMetadata);
+            this.gbxPlaceBelong.Controls.Add(this.txtMetadataRemark);
             this.gbxPlaceBelong.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbxPlaceBelong.Location = new System.Drawing.Point(0, 0);
             this.gbxPlaceBelong.Name = "gbxPlaceBelong";
             this.gbxPlaceBelong.Size = new System.Drawing.Size(1072, 540);
             this.gbxPlaceBelong.TabIndex = 0;
             this.gbxPlaceBelong.TabStop = false;
-            this.gbxPlaceBelong.Text = "所属地";
+            this.gbxPlaceBelong.Text = "属性配置";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 101);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(31, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "备注";
+            // 
+            // txtRemark
+            // 
+            this.txtRemark.Location = new System.Drawing.Point(6, 117);
+            this.txtRemark.Multiline = true;
+            this.txtRemark.Name = "txtRemark";
+            this.txtRemark.Size = new System.Drawing.Size(292, 417);
+            this.txtRemark.TabIndex = 7;
             // 
             // btnSave
             // 
@@ -81,12 +100,12 @@ namespace BMS
             this.lblTip.TabIndex = 5;
             this.lblTip.Text = "名称";
             // 
-            // txtPlace
+            // txtName
             // 
-            this.txtPlace.Location = new System.Drawing.Point(6, 78);
-            this.txtPlace.Name = "txtPlace";
-            this.txtPlace.Size = new System.Drawing.Size(292, 20);
-            this.txtPlace.TabIndex = 4;
+            this.txtName.Location = new System.Drawing.Point(6, 78);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(292, 20);
+            this.txtName.TabIndex = 4;
             // 
             // btnDel
             // 
@@ -108,52 +127,52 @@ namespace BMS
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // lbxPlace
+            // lbxMetadata
             // 
-            this.lbxPlace.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lbxPlace.FormattingEnabled = true;
-            this.lbxPlace.Location = new System.Drawing.Point(392, 16);
-            this.lbxPlace.Name = "lbxPlace";
-            this.lbxPlace.Size = new System.Drawing.Size(313, 521);
-            this.lbxPlace.TabIndex = 0;
+            this.lbxMetadata.DisplayMember = "Id";
+            this.lbxMetadata.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lbxMetadata.FormattingEnabled = true;
+            this.lbxMetadata.Location = new System.Drawing.Point(392, 16);
+            this.lbxMetadata.Name = "lbxMetadata";
+            this.lbxMetadata.Size = new System.Drawing.Size(313, 521);
+            this.lbxMetadata.TabIndex = 0;
+            this.lbxMetadata.ValueMember = "Name";
+            this.lbxMetadata.SelectedIndexChanged += new System.EventHandler(this.lbxMetadata_SelectedIndexChanged);
             // 
-            // txtRemark
+            // txtMetadataRemark
             // 
-            this.txtRemark.Location = new System.Drawing.Point(6, 117);
-            this.txtRemark.Multiline = true;
-            this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(292, 417);
-            this.txtRemark.TabIndex = 7;
+            this.txtMetadataRemark.Dock = System.Windows.Forms.DockStyle.Right;
+            this.txtMetadataRemark.Location = new System.Drawing.Point(705, 16);
+            this.txtMetadataRemark.Multiline = true;
+            this.txtMetadataRemark.Name = "txtMetadataRemark";
+            this.txtMetadataRemark.ReadOnly = true;
+            this.txtMetadataRemark.Size = new System.Drawing.Size(364, 521);
+            this.txtMetadataRemark.TabIndex = 9;
             // 
-            // label1
+            // cobxMetedataType
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 101);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "备注";
+            this.cobxMetedataType.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.cobxMetedataType.DisplayMember = "Value";
+            this.cobxMetedataType.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cobxMetedataType.ForeColor = System.Drawing.Color.Yellow;
+            this.cobxMetedataType.FormattingEnabled = true;
+            this.cobxMetedataType.ItemHeight = 27;
+            this.cobxMetedataType.Location = new System.Drawing.Point(6, 19);
+            this.cobxMetedataType.Name = "cobxMetedataType";
+            this.cobxMetedataType.Size = new System.Drawing.Size(292, 35);
+            this.cobxMetedataType.TabIndex = 10;
+            this.cobxMetedataType.ValueMember = "Key";
+            this.cobxMetedataType.SelectedIndexChanged += new System.EventHandler(this.cobxMetedataType_SelectedIndexChanged);
             // 
-            // textBox2
+            // lblId
             // 
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.textBox2.Location = new System.Drawing.Point(705, 16);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(364, 521);
-            this.textBox2.TabIndex = 9;
-            // 
-            // domainUpDown1
-            // 
-            this.domainUpDown1.Items.Add("所属地");
-            this.domainUpDown1.Items.Add("设计单位");
-            this.domainUpDown1.Items.Add("施工单位");
-            this.domainUpDown1.Items.Add("监理单位");
-            this.domainUpDown1.Location = new System.Drawing.Point(6, 19);
-            this.domainUpDown1.Name = "domainUpDown1";
-            this.domainUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.domainUpDown1.TabIndex = 10;
-            this.domainUpDown1.Text = "domainUpDown1";
+            this.lblId.AutoSize = true;
+            this.lblId.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblId.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblId.Location = new System.Drawing.Point(314, 23);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(0, 24);
+            this.lblId.TabIndex = 11;
             // 
             // Config
             // 
@@ -175,13 +194,14 @@ namespace BMS
         private System.Windows.Forms.GroupBox gbxPlaceBelong;
         private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.ListBox lbxPlace;
+        private System.Windows.Forms.ListBox lbxMetadata;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label lblTip;
-        private System.Windows.Forms.TextBox txtPlace;
+        private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtRemark;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.DomainUpDown domainUpDown1;
+        private System.Windows.Forms.TextBox txtMetadataRemark;
+        private System.Windows.Forms.ComboBox cobxMetedataType;
+        private System.Windows.Forms.Label lblId;
     }
 }

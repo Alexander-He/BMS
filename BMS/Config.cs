@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Configuration;
 using BMS.Model;
+using System.Linq;
+using System.Reflection;
 
 namespace BMS
 {
@@ -18,7 +20,7 @@ namespace BMS
             InitializeComponent();
         }
 
-      
+
 
         #region 事件
         /// <summary>
@@ -28,12 +30,10 @@ namespace BMS
         /// <param name="e"></param>
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            lblTip.Visible = true;
-            lblTip.Text = "所属地名称：";
-            txtPlace.Visible = true;
-            txtPlace.Text = string.Empty;
-            btnSave.Visible = true;
-            txtPlace.Focus();
+            lblId.Text = "新增";
+            txtName.Text = string.Empty;
+            txtRemark.Text = string.Empty;
+            txtName.Focus();
         }
         /// <summary>
         /// 保存
@@ -42,37 +42,40 @@ namespace BMS
         /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
-           
+            if (string.IsNullOrEmpty( txtName.Text.Trim()))
+            {
+                MetaDataType metaDataType = MetaDataType.Place;
+                Enum.TryParse<MetaDataType>(cobxMetedataType.ValueMember, out metaDataType);
+                int Id = lbxMetadata.SelectedValue.ToInt();
+                string name = metaDataType.GetType().GetMember(metaDataType.ToString()).FirstOrDefault()?.GetCustomAttribute<DescriptionAttribute>()?.Description;
+
+                MessageBox.Show($"{name}的名称不可以为空");
+                return;
+            }
+
+            MetaDataType temp = MetaDataType.Place;
+            Enum.TryParse<MetaDataType>(cobxMetedataType.ValueMember, out temp);
+            int newId = 0;
+            if (lblId.Text == "新增")
+            {
+                newId = DataService.AddMetadata(txtName.Text.Trim(), temp, txtRemark.Text.Trim());
+                lblId.Text = "";
+            }
+            else if (lblId.Text != "")
+            {
                 PropertyMetadata item = new PropertyMetadata();
 
-                DataService.AddMetadata(item);
-             
+                newId = item.Id = lblId.Text.Trim().ToInt();
+                item.Name = txtName.Text.Trim();
+                item.Remark = txtRemark.Text.Trim();
+                item.Type = temp.ToString();
 
-                lblTip.Visible = false;
-                txtPlace.Visible = false;
-                btnSave.Visible = false;
-                txtPlace.Tag = null;
-
-         
-            LoadData();
-        }
-        /// <summary>
-        /// 修改名称
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            if (lbxPlace.SelectedItem != null)
-            {
-                lblTip.Visible = true;
-                lblTip.Text = "所属地名称：";
-                txtPlace.Visible = true;
-                txtPlace.Text = lbxPlace.Text;
-                txtPlace.Tag = lbxPlace.SelectedValue;
-                btnSave.Visible = true;
-                txtPlace.Focus();
+                DataService.UpdateMetadata(item);
             }
+
+            LoadMetaDataItems();
+
+            lbxMetadata.SelectedValue = newId;
         }
         /// <summary>
         /// 删除所属地
@@ -81,38 +84,26 @@ namespace BMS
         /// <param name="e"></param>
         private void btnDel_Click(object sender, EventArgs e)
         {
-            //if (lbxPlace.SelectedItem != null)
-            //{
-            //    connection = new OleDbConnection(connectionString);
-            //    try
-            //    {
-            //        connection.Open();
-            //        OleDbCommand cmd = new OleDbCommand("select Count(ID) from Project where Place=" + lbxPlace.SelectedValue + "", connection);
-            //        DataTable dt = new DataTable();
-            //        OleDbDataAdapter ada = new OleDbDataAdapter(cmd);
-            //        ada.Fill(dt);
-            //        if (Convert.ToInt32(dt.Rows[0][0]) > 0)
-            //        {
-            //            MessageBox.Show("所选中的所属地仍然有工程项目在使用，不能删除。");
-            //            return;
-            //        }
-            //        if (MessageBox.Show("删除所属地", "确认要删除选中的所属地吗？", MessageBoxButtons.OKCancel) == DialogResult.OK)
-            //        {
-            //            cmd = new OleDbCommand("Delete from Place where ID=" + lbxPlace.SelectedValue, connection);
-            //            cmd.ExecuteNonQuery();
+            if (lbxMetadata.SelectedItem != null)
+            {
+                MetaDataType metaDataType = MetaDataType.Place;
+                Enum.TryParse<MetaDataType>(cobxMetedataType.ValueMember, out metaDataType);
+                int Id = lbxMetadata.SelectedValue.ToInt();
+                string name = metaDataType.GetType().GetMember(metaDataType.ToString()).FirstOrDefault()?.GetCustomAttribute<DescriptionAttribute>()?.Description;
 
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        throw ex;
-            //    }
-            //    finally
-            //    {
-            //        connection.Close();
-            //    }
-            //    LoadData();
-            //}
+
+                if (DataService.IsMetadataInUse(Id, metaDataType))
+                {
+                    MessageBox.Show($"所选中的{name}仍然有工程项目在使用，不能删除。");
+                    return;
+                }
+                if (MessageBox.Show($"删除{name}", $"确认要删除选中的{name}吗？", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    DataService.DelMetadata(Id);
+                }
+
+                LoadMetaDataItems();
+            }
         }
         /// <summary>
         /// Load
@@ -121,34 +112,65 @@ namespace BMS
         /// <param name="e"></param>
         private void Config_Load(object sender, EventArgs e)
         {
-            lblTip.Visible = false;
-            txtPlace.Visible = false;
-            btnSave.Visible = false;
-            LoadData();
+            List<Tuple<string, string>> dataSource = new List<Tuple<string, string>>();
+            var list = Enum.GetValues(typeof(MetaDataType));
+            foreach (var item in list)
+            {
+                MetaDataType temp = MetaDataType.Place;
+                Enum.TryParse<MetaDataType>(item.ToString(), out temp);
+                string name = temp.GetType().GetMember(temp.ToString()).FirstOrDefault()?.GetCustomAttribute<DescriptionAttribute>()?.Description;
+
+                dataSource.Add(new Tuple<string, string>(item.ToString(), name));
+            }
+
+            cobxMetedataType.DataSource = dataSource;
+            cobxMetedataType.DisplayMember = "item2";
+            cobxMetedataType.ValueMember = "item1";
+            cobxMetedataType.SelectedIndex = 0;
+            LoadMetaDataItems();
         }
-        /// <summary>
-        /// 关闭
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnClose_Click(object sender, EventArgs e)
+
+        private void cobxMetedataType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.Close();
+            LoadMetaDataItems();
         }
+
         #endregion
 
         #region 方法
         /// <summary>
         /// 加载数据
         /// </summary>
-        private void LoadData()
+        private void LoadMetaDataItems()
         {
-            var list = DataService.GetAllMetadata();
+            MetaDataType temp = MetaDataType.Place;
+            Enum.TryParse<MetaDataType>(cobxMetedataType.ValueMember, out temp);
+            var list = DataService.GetAllMetadata(temp);
 
-            lbxPlace.DataSource = list;
-            lbxPlace.ValueMember = "Id";
-            lbxPlace.DisplayMember = "Name";
+            lbxMetadata.DataSource = list;
+            if (list == null || list.Count == 0)
+            {
+                lblId.Text = "新增";
+            }
         }
+
         #endregion
+
+        private void lbxMetadata_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int Id = lbxMetadata.SelectedValue.ToInt();
+            var item = DataService.GetMetadata(Id);
+            if (item != null)
+            {
+                txtMetadataRemark.Text = item.Remark;
+
+                if (lblId.Text != "新增")
+                {
+                    lblId.Text = item.Id.ToString();
+                    txtName.Text = item.Name;
+                    txtRemark.Text = item.Remark;
+                }
+            }
+        }
     }
 }

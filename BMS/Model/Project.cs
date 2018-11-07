@@ -12,6 +12,7 @@ namespace BMS.Model
     public class Project
     {
         [Key]
+        [Required]
         public Guid Id { get; set; }
         /// <summary>
         /// 编号

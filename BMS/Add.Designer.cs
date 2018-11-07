@@ -31,7 +31,7 @@ namespace BMS
             this.gbRecordArea = new System.Windows.Forms.GroupBox();
             this.txtProjectDesc = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.comboSupervisorUnit = new System.Windows.Forms.ComboBox();
+            this.cobxSupervisorUnit = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.txtInvestigateCase = new System.Windows.Forms.TextBox();
@@ -75,7 +75,7 @@ namespace BMS
             // 
             this.gbRecordArea.Controls.Add(this.txtProjectDesc);
             this.gbRecordArea.Controls.Add(this.label19);
-            this.gbRecordArea.Controls.Add(this.comboSupervisorUnit);
+            this.gbRecordArea.Controls.Add(this.cobxSupervisorUnit);
             this.gbRecordArea.Controls.Add(this.label18);
             this.gbRecordArea.Controls.Add(this.label17);
             this.gbRecordArea.Controls.Add(this.txtInvestigateCase);
@@ -111,6 +111,7 @@ namespace BMS
             this.gbRecordArea.Controls.Add(this.txtAddress);
             this.gbRecordArea.Controls.Add(this.label2);
             this.gbRecordArea.Controls.Add(this.txtProjectName);
+            this.gbRecordArea.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gbRecordArea.Location = new System.Drawing.Point(12, 13);
             this.gbRecordArea.Name = "gbRecordArea";
             this.gbRecordArea.Size = new System.Drawing.Size(706, 460);
@@ -135,15 +136,14 @@ namespace BMS
             this.label19.TabIndex = 46;
             this.label19.Text = "工程概况：";
             // 
-            // comboSupervisorUnit
+            // cobxSupervisorUnit
             // 
-            this.comboSupervisorUnit.DisplayMember = "Id";
-            this.comboSupervisorUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboSupervisorUnit.Location = new System.Drawing.Point(77, 154);
-            this.comboSupervisorUnit.Name = "comboSupervisorUnit";
-            this.comboSupervisorUnit.Size = new System.Drawing.Size(263, 21);
-            this.comboSupervisorUnit.TabIndex = 45;
-            this.comboSupervisorUnit.ValueMember = "Name";
+            this.cobxSupervisorUnit.DisplayMember = "Id";
+            this.cobxSupervisorUnit.Location = new System.Drawing.Point(77, 154);
+            this.cobxSupervisorUnit.Name = "cobxSupervisorUnit";
+            this.cobxSupervisorUnit.Size = new System.Drawing.Size(263, 21);
+            this.cobxSupervisorUnit.TabIndex = 45;
+            this.cobxSupervisorUnit.ValueMember = "Name";
             // 
             // label18
             // 
@@ -174,7 +174,6 @@ namespace BMS
             // cobxReportCondition
             // 
             this.cobxReportCondition.DisplayMember = "Id";
-            this.cobxReportCondition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobxReportCondition.Location = new System.Drawing.Point(311, 98);
             this.cobxReportCondition.Name = "cobxReportCondition";
             this.cobxReportCondition.Size = new System.Drawing.Size(165, 21);
@@ -184,17 +183,15 @@ namespace BMS
             // cobxConstructUnit
             // 
             this.cobxConstructUnit.DisplayMember = "Id";
-            this.cobxConstructUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobxConstructUnit.Location = new System.Drawing.Point(421, 126);
+            this.cobxConstructUnit.Location = new System.Drawing.Point(416, 126);
             this.cobxConstructUnit.Name = "cobxConstructUnit";
-            this.cobxConstructUnit.Size = new System.Drawing.Size(272, 21);
+            this.cobxConstructUnit.Size = new System.Drawing.Size(277, 21);
             this.cobxConstructUnit.TabIndex = 40;
             this.cobxConstructUnit.ValueMember = "Name";
             // 
             // cobxDesignUnit
             // 
             this.cobxDesignUnit.DisplayMember = "Id";
-            this.cobxDesignUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobxDesignUnit.Location = new System.Drawing.Point(77, 126);
             this.cobxDesignUnit.Name = "cobxDesignUnit";
             this.cobxDesignUnit.Size = new System.Drawing.Size(263, 21);
@@ -228,7 +225,6 @@ namespace BMS
             // 
             // cobxBuildStruct
             // 
-            this.cobxBuildStruct.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobxBuildStruct.Items.AddRange(new object[] {
             "搭建",
             "框架"});
@@ -240,7 +236,6 @@ namespace BMS
             // cobxPlace
             // 
             this.cobxPlace.DisplayMember = "Id";
-            this.cobxPlace.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobxPlace.Location = new System.Drawing.Point(77, 98);
             this.cobxPlace.Name = "cobxPlace";
             this.cobxPlace.Size = new System.Drawing.Size(165, 21);
@@ -258,16 +253,16 @@ namespace BMS
             // 
             // dtCheckDate
             // 
-            this.dtCheckDate.Location = new System.Drawing.Point(258, 210);
+            this.dtCheckDate.Location = new System.Drawing.Point(300, 210);
             this.dtCheckDate.Name = "dtCheckDate";
-            this.dtCheckDate.Size = new System.Drawing.Size(121, 20);
+            this.dtCheckDate.Size = new System.Drawing.Size(151, 20);
             this.dtCheckDate.TabIndex = 11;
             // 
             // dtWorkStartDate
             // 
             this.dtWorkStartDate.Location = new System.Drawing.Point(77, 210);
             this.dtWorkStartDate.Name = "dtWorkStartDate";
-            this.dtWorkStartDate.Size = new System.Drawing.Size(111, 20);
+            this.dtWorkStartDate.Size = new System.Drawing.Size(150, 20);
             this.dtWorkStartDate.TabIndex = 7;
             // 
             // label14
@@ -299,7 +294,7 @@ namespace BMS
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(191, 214);
+            this.label12.Location = new System.Drawing.Point(233, 214);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(67, 13);
             this.label12.TabIndex = 21;
@@ -453,7 +448,7 @@ namespace BMS
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "保存";
             this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.button1_Click);
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // Add
             // 
@@ -510,7 +505,7 @@ namespace BMS
         private System.Windows.Forms.TextBox txtCode;
         private System.Windows.Forms.TextBox txtProjectDesc;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.ComboBox comboSupervisorUnit;
+        private System.Windows.Forms.ComboBox cobxSupervisorUnit;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtInvestigateCase;

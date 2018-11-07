@@ -10,6 +10,30 @@ namespace BMS
 {
     public static class DataService
     {
+
+        public static bool IsMetadataInUse(int Id, MetaDataType metaDataType)
+        {
+            using (BMSContext context = new BMSContext())
+            {
+                switch (metaDataType)
+                {
+                    case MetaDataType.Place:
+                        return context.Projects.Any(x => x.Place == Id);
+                    case MetaDataType.DesignUnit:
+                        return context.Projects.Any(x => x.DesignUnit == Id);
+                    case MetaDataType.ConstructUnit:
+                        return context.Projects.Any(x => x.ConstructUnit == Id);
+                    case MetaDataType.SupervisorUnit:
+                        return context.Projects.Any(x => x.SupervisorUnit == Id);
+                    case MetaDataType.ReportCondition:
+                        return context.Projects.Any(x => x.ReportCondition == Id);
+                    case MetaDataType.BuildStruct:
+                        return context.Projects.Any(x => x.BuildStruct == Id);
+                    default:
+                        return false;
+                }
+            }
+        }
         public static Project GetProject(Guid Id)
         {
             using (BMSContext context = new BMSContext())
@@ -100,13 +124,13 @@ namespace BMS
         /// <param name="Id"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static PropertyMetadata GetMetadata(int Id, MetaDataType type = MetaDataType.Place)
+        public static PropertyMetadata GetMetadata(int Id)
         {
             using (BMSContext context = new BMSContext())
             {
-                if (context.PropertyMetadatas.Any(x => x.Id == Id && x.Type == type.ToString()))
+                if (context.PropertyMetadatas.Any(x => x.Id == Id))
                 {
-                    return context.PropertyMetadatas.First(x => x.Id == Id && x.Type == type.ToString());
+                    return context.PropertyMetadatas.First(x => x.Id == Id);
                 }
                 return null;
             }
@@ -193,6 +217,24 @@ namespace BMS
                 context.PropertyMetadatas.Add(entity);
                 return context.SaveChanges();
             }
+        }
+        public static int UpdateMetadata(PropertyMetadata entity)
+        {
+            if (entity != null)
+            {
+                using (BMSContext context = new BMSContext())
+                {
+                    var dbEntity = context.PropertyMetadatas.FirstOrDefault(x => x.Id == entity.Id);
+                    if (dbEntity != null)
+                    {
+                        dbEntity.Name = entity.Name;
+                        dbEntity.Remark = entity.Remark;
+                        dbEntity.Type = entity.Type;
+                        return context.SaveChanges();
+                    }
+                }
+            }
+            return 0;
         }
         /// <summary>
         /// 查询项目

@@ -30,6 +30,26 @@ namespace BMS
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.dgvMain = new System.Windows.Forms.DataGridView();
+            this.ProjectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BuildUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ConstructUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DesignUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SupervisorUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BuildStruct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Place = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WorkChargre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Conact = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectProgress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReportCondition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WorkStartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CheckDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvestigateCase = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BuildArea = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Remark = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtKey = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -54,26 +74,6 @@ namespace BMS
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtInvestigateCase = new System.Windows.Forms.TextBox();
-            this.ProjectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BuildUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ConstructUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DesignUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SupervisorUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BuildStruct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Place = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WorkChargre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Conact = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectProgress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReportCondition = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WorkStartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CheckDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InvestigateCase = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BuildArea = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Remark = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).BeginInit();
             this.SuspendLayout();
             // 
@@ -113,239 +113,6 @@ namespace BMS
             this.dgvMain.Size = new System.Drawing.Size(1623, 670);
             this.dgvMain.TabIndex = 5;
             this.dgvMain.DoubleClick += new System.EventHandler(this.dgvMain_DoubleClick);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnSearch.ForeColor = System.Drawing.Color.Red;
-            this.btnSearch.Location = new System.Drawing.Point(944, 4);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(125, 90);
-            this.btnSearch.TabIndex = 7;
-            this.btnSearch.Text = "查询(Enter)";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // txtKey
-            // 
-            this.txtKey.Location = new System.Drawing.Point(837, 3);
-            this.txtKey.Name = "txtKey";
-            this.txtKey.Size = new System.Drawing.Size(101, 20);
-            this.txtKey.TabIndex = 8;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(785, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "关键字:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 8);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 13);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "检查日期时间段:";
-            // 
-            // dtDateStart
-            // 
-            this.dtDateStart.CustomFormat = "yyyy-MM-dd";
-            this.dtDateStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtDateStart.Location = new System.Drawing.Point(112, 5);
-            this.dtDateStart.Name = "dtDateStart";
-            this.dtDateStart.Size = new System.Drawing.Size(109, 20);
-            this.dtDateStart.TabIndex = 12;
-            this.dtDateStart.ValueChanged += new System.EventHandler(this.dtDateStart_ValueChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(227, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(22, 13);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "到:";
-            // 
-            // dtDateEnd
-            // 
-            this.dtDateEnd.CustomFormat = "yyyy-MM-dd";
-            this.dtDateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtDateEnd.Location = new System.Drawing.Point(255, 4);
-            this.dtDateEnd.Name = "dtDateEnd";
-            this.dtDateEnd.Size = new System.Drawing.Size(113, 20);
-            this.dtDateEnd.TabIndex = 14;
-            this.dtDateEnd.ValueChanged += new System.EventHandler(this.dtDateEnd_ValueChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(374, 8);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 13);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "所属地：";
-            // 
-            // cobxPlace
-            // 
-            this.cobxPlace.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobxPlace.Location = new System.Drawing.Point(432, 3);
-            this.cobxPlace.Name = "cobxPlace";
-            this.cobxPlace.Size = new System.Drawing.Size(66, 21);
-            this.cobxPlace.TabIndex = 16;
-            // 
-            // cobxReportCondition
-            // 
-            this.cobxReportCondition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobxReportCondition.Items.AddRange(new object[] {
-            "请选择",
-            "未报建",
-            "未按规划施工",
-            "镇报建",
-            "市报建",
-            "已拆除",
-            "已补办"});
-            this.cobxReportCondition.Location = new System.Drawing.Point(716, 4);
-            this.cobxReportCondition.Name = "cobxReportCondition";
-            this.cobxReportCondition.Size = new System.Drawing.Size(63, 21);
-            this.cobxReportCondition.TabIndex = 18;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(646, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 13);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "报建情况：";
-            // 
-            // cobxBuildStruct
-            // 
-            this.cobxBuildStruct.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cobxBuildStruct.Items.AddRange(new object[] {
-            "请选择",
-            "搭建",
-            "框架",
-            "其它"});
-            this.cobxBuildStruct.Location = new System.Drawing.Point(574, 3);
-            this.cobxBuildStruct.Name = "cobxBuildStruct";
-            this.cobxBuildStruct.Size = new System.Drawing.Size(66, 21);
-            this.cobxBuildStruct.TabIndex = 20;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(504, 8);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(67, 13);
-            this.label6.TabIndex = 19;
-            this.label6.Text = "建筑结构：";
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnAdd.Location = new System.Drawing.Point(15, 54);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(109, 40);
-            this.btnAdd.TabIndex = 21;
-            this.btnAdd.Text = "新增";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnDelete.Location = new System.Drawing.Point(245, 54);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(109, 40);
-            this.btnDelete.TabIndex = 22;
-            this.btnDelete.Text = "删除";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnUpdate.Location = new System.Drawing.Point(130, 54);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(109, 40);
-            this.btnUpdate.TabIndex = 24;
-            this.btnUpdate.Text = "修改";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
-            // btnConfig
-            // 
-            this.btnConfig.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnConfig.Location = new System.Drawing.Point(360, 54);
-            this.btnConfig.Name = "btnConfig";
-            this.btnConfig.Size = new System.Drawing.Size(109, 40);
-            this.btnConfig.TabIndex = 25;
-            this.btnConfig.Text = "配置";
-            this.btnConfig.UseVisualStyleBackColor = true;
-            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
-            // 
-            // btnExport
-            // 
-            this.btnExport.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnExport.Location = new System.Drawing.Point(475, 54);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(109, 40);
-            this.btnExport.TabIndex = 28;
-            this.btnExport.Text = "导出";
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 31);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(58, 13);
-            this.label7.TabIndex = 30;
-            this.label7.Text = "工程名称:";
-            // 
-            // txtProjectName
-            // 
-            this.txtProjectName.Location = new System.Drawing.Point(76, 28);
-            this.txtProjectName.Name = "txtProjectName";
-            this.txtProjectName.Size = new System.Drawing.Size(173, 20);
-            this.txtProjectName.TabIndex = 29;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(535, 31);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(34, 13);
-            this.label8.TabIndex = 32;
-            this.label8.Text = "备注:";
-            // 
-            // txtRemark
-            // 
-            this.txtRemark.Location = new System.Drawing.Point(574, 28);
-            this.txtRemark.Name = "txtRemark";
-            this.txtRemark.Size = new System.Drawing.Size(364, 20);
-            this.txtRemark.TabIndex = 31;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(255, 31);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(58, 13);
-            this.label9.TabIndex = 34;
-            this.label9.Text = "查处情况:";
-            // 
-            // txtInvestigateCase
-            // 
-            this.txtInvestigateCase.Location = new System.Drawing.Point(319, 28);
-            this.txtInvestigateCase.Name = "txtInvestigateCase";
-            this.txtInvestigateCase.Size = new System.Drawing.Size(205, 20);
-            this.txtInvestigateCase.TabIndex = 33;
             // 
             // ProjectId
             // 
@@ -523,6 +290,245 @@ namespace BMS
             this.Remark.ReadOnly = true;
             this.Remark.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Remark.Width = 56;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSearch.ForeColor = System.Drawing.Color.Red;
+            this.btnSearch.Location = new System.Drawing.Point(1055, 4);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(125, 90);
+            this.btnSearch.TabIndex = 7;
+            this.btnSearch.Text = "查询(Enter)";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtKey
+            // 
+            this.txtKey.Location = new System.Drawing.Point(944, 4);
+            this.txtKey.Name = "txtKey";
+            this.txtKey.Size = new System.Drawing.Size(101, 20);
+            this.txtKey.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(892, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "关键字:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 8);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "检查日期时间段:";
+            // 
+            // dtDateStart
+            // 
+            this.dtDateStart.CustomFormat = "yyyy-MM-dd";
+            this.dtDateStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtDateStart.Location = new System.Drawing.Point(112, 5);
+            this.dtDateStart.Name = "dtDateStart";
+            this.dtDateStart.Size = new System.Drawing.Size(109, 20);
+            this.dtDateStart.TabIndex = 12;
+            this.dtDateStart.ValueChanged += new System.EventHandler(this.dtDateStart_ValueChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(227, 8);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(22, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "到:";
+            // 
+            // dtDateEnd
+            // 
+            this.dtDateEnd.CustomFormat = "yyyy-MM-dd";
+            this.dtDateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtDateEnd.Location = new System.Drawing.Point(255, 4);
+            this.dtDateEnd.Name = "dtDateEnd";
+            this.dtDateEnd.Size = new System.Drawing.Size(113, 20);
+            this.dtDateEnd.TabIndex = 14;
+            this.dtDateEnd.ValueChanged += new System.EventHandler(this.dtDateEnd_ValueChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(374, 8);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "所属地：";
+            // 
+            // cobxPlace
+            // 
+            this.cobxPlace.DisplayMember = "Name";
+            this.cobxPlace.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobxPlace.Location = new System.Drawing.Point(421, 4);
+            this.cobxPlace.Name = "cobxPlace";
+            this.cobxPlace.Size = new System.Drawing.Size(107, 21);
+            this.cobxPlace.TabIndex = 16;
+            this.cobxPlace.ValueMember = "Id";
+            // 
+            // cobxReportCondition
+            // 
+            this.cobxReportCondition.DisplayMember = "Name";
+            this.cobxReportCondition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobxReportCondition.Items.AddRange(new object[] {
+            "请选择",
+            "未报建",
+            "未按规划施工",
+            "镇报建",
+            "市报建",
+            "已拆除",
+            "已补办"});
+            this.cobxReportCondition.Location = new System.Drawing.Point(771, 4);
+            this.cobxReportCondition.Name = "cobxReportCondition";
+            this.cobxReportCondition.Size = new System.Drawing.Size(115, 21);
+            this.cobxReportCondition.TabIndex = 18;
+            this.cobxReportCondition.ValueMember = "Id";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(708, 8);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(67, 13);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "报建情况：";
+            // 
+            // cobxBuildStruct
+            // 
+            this.cobxBuildStruct.DisplayMember = "Name";
+            this.cobxBuildStruct.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobxBuildStruct.Items.AddRange(new object[] {
+            "请选择",
+            "搭建",
+            "框架",
+            "其它"});
+            this.cobxBuildStruct.Location = new System.Drawing.Point(601, 4);
+            this.cobxBuildStruct.Name = "cobxBuildStruct";
+            this.cobxBuildStruct.Size = new System.Drawing.Size(99, 21);
+            this.cobxBuildStruct.TabIndex = 20;
+            this.cobxBuildStruct.ValueMember = "Id";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(538, 8);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(67, 13);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "建筑结构：";
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnAdd.Location = new System.Drawing.Point(15, 54);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(109, 40);
+            this.btnAdd.TabIndex = 21;
+            this.btnAdd.Text = "新增";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnDelete.Location = new System.Drawing.Point(245, 54);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(109, 40);
+            this.btnDelete.TabIndex = 22;
+            this.btnDelete.Text = "删除";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnUpdate.Location = new System.Drawing.Point(130, 54);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(109, 40);
+            this.btnUpdate.TabIndex = 24;
+            this.btnUpdate.Text = "修改";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // btnConfig
+            // 
+            this.btnConfig.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnConfig.Location = new System.Drawing.Point(360, 54);
+            this.btnConfig.Name = "btnConfig";
+            this.btnConfig.Size = new System.Drawing.Size(109, 40);
+            this.btnConfig.TabIndex = 25;
+            this.btnConfig.Text = "配置";
+            this.btnConfig.UseVisualStyleBackColor = true;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
+            // 
+            // btnExport
+            // 
+            this.btnExport.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnExport.Location = new System.Drawing.Point(475, 54);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(109, 40);
+            this.btnExport.TabIndex = 28;
+            this.btnExport.Text = "导出";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 31);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(58, 13);
+            this.label7.TabIndex = 30;
+            this.label7.Text = "工程名称:";
+            // 
+            // txtProjectName
+            // 
+            this.txtProjectName.Location = new System.Drawing.Point(76, 28);
+            this.txtProjectName.Name = "txtProjectName";
+            this.txtProjectName.Size = new System.Drawing.Size(173, 20);
+            this.txtProjectName.TabIndex = 29;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(535, 31);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(34, 13);
+            this.label8.TabIndex = 32;
+            this.label8.Text = "备注:";
+            // 
+            // txtRemark
+            // 
+            this.txtRemark.Location = new System.Drawing.Point(574, 28);
+            this.txtRemark.Name = "txtRemark";
+            this.txtRemark.Size = new System.Drawing.Size(364, 20);
+            this.txtRemark.TabIndex = 31;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(255, 31);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(58, 13);
+            this.label9.TabIndex = 34;
+            this.label9.Text = "查处情况:";
+            // 
+            // txtInvestigateCase
+            // 
+            this.txtInvestigateCase.Location = new System.Drawing.Point(319, 28);
+            this.txtInvestigateCase.Name = "txtInvestigateCase";
+            this.txtInvestigateCase.Size = new System.Drawing.Size(205, 20);
+            this.txtInvestigateCase.TabIndex = 33;
             // 
             // Main
             // 
