@@ -28,7 +28,10 @@ namespace BMS
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Config));
             this.gbxPlaceBelong = new System.Windows.Forms.GroupBox();
+            this.lblId = new System.Windows.Forms.Label();
+            this.cobxMetedataType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
@@ -38,8 +41,6 @@ namespace BMS
             this.btnAdd = new System.Windows.Forms.Button();
             this.lbxMetadata = new System.Windows.Forms.ListBox();
             this.txtMetadataRemark = new System.Windows.Forms.TextBox();
-            this.cobxMetedataType = new System.Windows.Forms.ComboBox();
-            this.lblId = new System.Windows.Forms.Label();
             this.gbxPlaceBelong.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,6 +64,32 @@ namespace BMS
             this.gbxPlaceBelong.TabIndex = 0;
             this.gbxPlaceBelong.TabStop = false;
             this.gbxPlaceBelong.Text = " Ù–‘≈‰÷√";
+            // 
+            // lblId
+            // 
+            this.lblId.AutoSize = true;
+            this.lblId.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblId.ForeColor = System.Drawing.Color.SaddleBrown;
+            this.lblId.Location = new System.Drawing.Point(314, 23);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(0, 24);
+            this.lblId.TabIndex = 11;
+            // 
+            // cobxMetedataType
+            // 
+            this.cobxMetedataType.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.cobxMetedataType.DisplayMember = "Value";
+            this.cobxMetedataType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cobxMetedataType.Font = new System.Drawing.Font("Œ¢»Ì—≈∫⁄", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.cobxMetedataType.ForeColor = System.Drawing.Color.Yellow;
+            this.cobxMetedataType.FormattingEnabled = true;
+            this.cobxMetedataType.ItemHeight = 27;
+            this.cobxMetedataType.Location = new System.Drawing.Point(6, 19);
+            this.cobxMetedataType.Name = "cobxMetedataType";
+            this.cobxMetedataType.Size = new System.Drawing.Size(292, 35);
+            this.cobxMetedataType.TabIndex = 10;
+            this.cobxMetedataType.ValueMember = "Key";
+            this.cobxMetedataType.SelectedIndexChanged += new System.EventHandler(this.cobxMetedataType_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -129,14 +156,14 @@ namespace BMS
             // 
             // lbxMetadata
             // 
-            this.lbxMetadata.DisplayMember = "Id";
+            this.lbxMetadata.DisplayMember = "Name";
             this.lbxMetadata.Dock = System.Windows.Forms.DockStyle.Right;
             this.lbxMetadata.FormattingEnabled = true;
             this.lbxMetadata.Location = new System.Drawing.Point(392, 16);
             this.lbxMetadata.Name = "lbxMetadata";
             this.lbxMetadata.Size = new System.Drawing.Size(313, 521);
             this.lbxMetadata.TabIndex = 0;
-            this.lbxMetadata.ValueMember = "Name";
+            this.lbxMetadata.ValueMember = "Id";
             this.lbxMetadata.SelectedIndexChanged += new System.EventHandler(this.lbxMetadata_SelectedIndexChanged);
             // 
             // txtMetadataRemark
@@ -149,37 +176,13 @@ namespace BMS
             this.txtMetadataRemark.Size = new System.Drawing.Size(364, 521);
             this.txtMetadataRemark.TabIndex = 9;
             // 
-            // cobxMetedataType
-            // 
-            this.cobxMetedataType.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.cobxMetedataType.DisplayMember = "Value";
-            this.cobxMetedataType.Font = new System.Drawing.Font("Œ¢»Ì—≈∫⁄", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cobxMetedataType.ForeColor = System.Drawing.Color.Yellow;
-            this.cobxMetedataType.FormattingEnabled = true;
-            this.cobxMetedataType.ItemHeight = 27;
-            this.cobxMetedataType.Location = new System.Drawing.Point(6, 19);
-            this.cobxMetedataType.Name = "cobxMetedataType";
-            this.cobxMetedataType.Size = new System.Drawing.Size(292, 35);
-            this.cobxMetedataType.TabIndex = 10;
-            this.cobxMetedataType.ValueMember = "Key";
-            this.cobxMetedataType.SelectedIndexChanged += new System.EventHandler(this.cobxMetedataType_SelectedIndexChanged);
-            // 
-            // lblId
-            // 
-            this.lblId.AutoSize = true;
-            this.lblId.Font = new System.Drawing.Font("Tahoma", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblId.ForeColor = System.Drawing.Color.SaddleBrown;
-            this.lblId.Location = new System.Drawing.Point(314, 23);
-            this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(0, 24);
-            this.lblId.TabIndex = 11;
-            // 
             // Config
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1072, 540);
             this.Controls.Add(this.gbxPlaceBelong);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Config";
             this.Text = "≈‰÷√";
             this.Load += new System.EventHandler(this.Config_Load);

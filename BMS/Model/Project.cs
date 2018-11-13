@@ -13,7 +13,7 @@ namespace BMS.Model
     {
         [Key]
         [Required]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         /// <summary>
         /// 编号
         /// </summary>
@@ -29,7 +29,7 @@ namespace BMS.Model
         /// <summary>
         /// 所属地
         /// </summary>
-        public int Place { get; set; }
+        public Int64 Place { get; set; }
         /// <summary>
         /// 建设单位
         /// </summary>
@@ -37,23 +37,23 @@ namespace BMS.Model
         /// <summary>
         /// 施工单位
         /// </summary>
-        public int ConstructUnit { get; set; }
+        public Int64 ConstructUnit { get; set; }
         /// <summary>
         /// 设计单位
         /// </summary>
-        public int DesignUnit { get; set; }
+        public Int64 DesignUnit { get; set; }
         /// <summary>
         /// 建筑结构(搭建、框架、其它)
         /// </summary>
-        public int BuildStruct { get; set; }
+        public Int64 BuildStruct { get; set; }
         /// <summary>
         /// 报建情况（未报建、未按规划施工、镇报建、市报建、已拆除、已补办）
         /// </summary>
-        public int ReportCondition { get; set; }
+        public Int64 ReportCondition { get; set; }
         /// <summary>
         /// 监理单位
         /// </summary>
-        public int SupervisorUnit { get; set; }
+        public Int64 SupervisorUnit { get; set; }
         /// <summary>
         /// 负责人
         /// </summary>

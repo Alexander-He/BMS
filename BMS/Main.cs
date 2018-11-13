@@ -31,13 +31,6 @@ namespace BMS
         /// <param name="e"></param>
         private void Main_Load(object sender, EventArgs e)
         {
-            PropertyMetadata item = new PropertyMetadata();
-            item.Id = 10;
-            item.Type = "asd";
-            item.Name = "test1";
-            item.Remark = "aa";
-            DataService.AddMetadata(item);
-
             InitForm();
             btnSearch_Click(null, null);
         }
@@ -58,9 +51,31 @@ namespace BMS
                 Remark = txtRemark.Text.Trim(),
                 Place = cobxPlace.SelectedValue.ToInt(),
                 BuildStruct = cobxBuildStruct.SelectedValue.ToInt(),
-                ReportCondition = cobxReportCondition.SelectedValue.ToInt() 
+                ReportCondition = cobxReportCondition.SelectedValue.ToInt()
             };
-            dgvMain.DataSource = SearchData(conditions);
+            var list = SearchData(conditions);
+            if (rbtnPlace.Checked)
+            {
+                if (cbxDA.Text == "正序")
+                    list = list.OrderBy(x => x.PlaceName).ToList();
+                else
+                    list = list.OrderByDescending(x => x.PlaceName).ToList();
+            }
+            else if (rbtnReport.Checked)
+            {
+                if (cbxDA.Text == "正序")
+                    list = list.OrderBy(x => x.ReportConditionName).ToList();
+                else
+                    list = list.OrderByDescending(x => x.ReportConditionName).ToList();
+            }
+            else if (rbtnCheckDate.Checked)
+            {
+                if (cbxDA.Text == "正序")
+                    list = list.OrderBy(x => x.CheckDate).ToList();
+                else
+                    list = list.OrderByDescending(x => x.CheckDate).ToList();
+            }
+            dgvMain.DataSource = list;
         }
         /// <summary>
         /// 新增
@@ -85,10 +100,10 @@ namespace BMS
         {
             if (DialogResult.OK == MessageBox.Show("确定删除所选中的项目吗？", "删除项目", MessageBoxButtons.OKCancel))
             {
-                var Ids = new List<Guid>();
+                var Ids = new List<string>();
                 for (int i = 0; i < dgvMain.SelectedRows.Count; i++)
                 {
-                    Ids.Add(dgvMain.SelectedRows[i].Cells[0].Value.ToGuid());
+                    Ids.Add(dgvMain.SelectedRows[i].Cells[0].Value.ToString());
                 }
                 DataService.DelProject(Ids);
                 btnSearch_Click(null, null);
@@ -120,13 +135,16 @@ namespace BMS
         /// <param name="e"></param>
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (dgvMain.SelectedRows != null)
+            if (dgvMain.SelectedRows != null && dgvMain.SelectedRows.Count > 0)
             {
                 Add frm = new Add();
-                frm.strID = dgvMain.SelectedRows[0].Cells[0].Value.ToGuid();
+                frm.strID = dgvMain.SelectedRows[0].Cells[0].Value.ToString();
                 frm.ModifyType = "update";
                 frm.Show();
-
+            }
+            else
+            {
+                MessageBox.Show("请选择要修改的工程", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         /// <summary>
@@ -136,10 +154,10 @@ namespace BMS
         /// <param name="e"></param>
         private void dgvMain_DoubleClick(object sender, EventArgs e)
         {
-            if (dgvMain.SelectedRows != null)
+            if (dgvMain.SelectedRows != null && dgvMain.SelectedRows.Count > 0)
             {
                 Add frm = new Add();
-                frm.strID = dgvMain.SelectedRows[0].Cells[0].Value.ToGuid();
+                frm.strID = dgvMain.SelectedRows[0].Cells[0].Value.ToString();
                 frm.ModifyType = "update";
                 frm.Show();
             }
@@ -164,7 +182,7 @@ namespace BMS
         {
             if (dgvMain.DataSource != null)
             {
-                var data = (List<Project>)dgvMain.DataSource;
+                var data = (List<ProjectShow>)dgvMain.DataSource;
                 if (data.Count > 0)
                 {
                     ExportExcel(data);
@@ -214,6 +232,7 @@ namespace BMS
             cobxPlace.SelectedIndex = 0;
             cobxBuildStruct.SelectedIndex = 0;
             cobxReportCondition.SelectedIndex = 0;
+            cbxDA.SelectedIndex = 0;
         }
         /// <summary>
         /// 查询数据
@@ -225,51 +244,70 @@ namespace BMS
         /// <summary>
         /// 导出为excel
         /// </summary>
-        public void ExportExcel(List<Project> projets)
+        public void ExportExcel(List<ProjectShow> projets)
         {
             try
-            { 
-                string[] headerField = new string[] {
+            {
+                string path = string.Empty;
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    path = sfd.FileName;
+                    string[] headerField = new string[] {
                     "序号", "编号", "工程名称", "工程地址", "建设单位", "施工单位", "设计单位", "监理单位", "负责人", "联系电话", "工程概况", "工程进度", "报建情况", "开工日期", "检查日期", "查处情况", "备注"
                     };
+                    XSSFWorkbook workbook = new XSSFWorkbook();
+                    XSSFSheet sheet = (XSSFSheet)workbook.CreateSheet("城市管理综合执法局凤岗分局在建工程调查表");
+                    XSSFCellStyle cellStyle = workbook.CreateCellStyle() as XSSFCellStyle;
+                    cellStyle.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thin;
+                    cellStyle.BorderLeft = NPOI.SS.UserModel.BorderStyle.Thin;
+                    cellStyle.BorderRight = NPOI.SS.UserModel.BorderStyle.Thin;
+                    cellStyle.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
+                    //set header
+                    XSSFRow rowHeader = (XSSFRow)sheet.CreateRow(2);
+                    for (int i = 0; i < headerField.Length; i++)
+                    {
+                        XSSFCell cell = rowHeader.CreateCell(i) as XSSFCell;
+                        cell.CellStyle = cellStyle;
+                        rowHeader.Cells[i].SetCellValue(headerField[i]);
+                    }
 
-                string path = $"{System.Environment.CurrentDirectory}\\{ DateTime.Now.ToString("yyyyMMddhhmmssff")}-调查表.xls";
-                XSSFWorkbook workbook = new XSSFWorkbook();
-                XSSFSheet sheet = (XSSFSheet)workbook.CreateSheet("城市管理综合执法局凤岗分局在建工程调查表");
+                    int index = 3;
+                    foreach (var project in projets)
+                    {
+                        XSSFRow row = (XSSFRow)sheet.CreateRow(index);
 
-                //set header
-                XSSFRow rowHeader = (XSSFRow)sheet.CreateRow(2);
-                for (int i = 0; i < headerField.Length; i++)
-                {
-                    rowHeader.Cells[i].SetCellValue(headerField[i]);
+                        for (int i = 0; i < 17; i++)
+                        {
+                            XSSFCell cell = row.CreateCell(i) as XSSFCell;
+                            cell.CellStyle = cellStyle;
+                        }
+
+                        row.Cells[0].SetCellValue(index - 2);
+                        row.Cells[1].SetCellValue(project.Code);
+                        row.Cells[2].SetCellValue(project.ProjectName);
+                        row.Cells[3].SetCellValue(project.Address);
+                        row.Cells[4].SetCellValue(project.BuildUnit);
+                        row.Cells[5].SetCellValue(project.ConstructUnitName);
+                        row.Cells[6].SetCellValue(project.DesignUnitName);
+                        row.Cells[7].SetCellValue(project.SupervisorUnitName);
+                        row.Cells[8].SetCellValue(project.WorkChargre);
+                        row.Cells[9].SetCellValue(project.Contact);
+                        row.Cells[10].SetCellValue(project.ProjectDesc);
+                        row.Cells[11].SetCellValue(project.ProjectProgress);
+                        row.Cells[12].SetCellValue(project.ReportConditionName);
+                        row.Cells[13].SetCellValue(project.WorkStartDateName);
+                        row.Cells[14].SetCellValue(project.CheckDateName);
+                        row.Cells[15].SetCellValue(project.InvestigateCase);
+                        row.Cells[16].SetCellValue(project.Remark);
+                        index++;
+                    }
+
+
+                    using (FileStream fs = new FileStream(path, FileMode.CreateNew))
+                    {
+                        workbook.Write(fs);
+                    }
                 }
-
-                int index = 3;
-                foreach (var project in projets)
-                {
-                    XSSFRow row = (XSSFRow)sheet.CreateRow(index);
-                    row.Cells[0].SetCellValue(index - 2);
-                    row.Cells[1].SetCellValue(project.Code);
-                    row.Cells[2].SetCellValue(project.ProjectName);
-                    row.Cells[3].SetCellValue(project.Address);
-                    row.Cells[4].SetCellValue(project.BuildUnit);
-                    row.Cells[5].SetCellValue(project.ConstructUnit);
-                    row.Cells[6].SetCellValue(project.DesignUnit);
-                    row.Cells[7].SetCellValue(project.SupervisorUnit);
-                    row.Cells[8].SetCellValue(project.WorkChargre);
-                    row.Cells[9].SetCellValue(project.Contact);
-                    row.Cells[10].SetCellValue(project.ProjectDesc);
-                    row.Cells[11].SetCellValue(project.ProjectProgress);
-                    row.Cells[12].SetCellValue(project.ReportCondition);
-                    row.Cells[13].SetCellValue(project.WorkStartDate.ToString("yyyy-MM-dd"));
-                    row.Cells[14].SetCellValue(project.CheckDate.HasValue ? project.CheckDate.Value.ToString("yyyy-MM-dd") : string.Empty);
-                    row.Cells[15].SetCellValue(project.InvestigateCase);
-                    row.Cells[16].SetCellValue(project.Remark);
-                }
-                using (FileStream fs = new FileStream(path, FileMode.CreateNew))
-                {
-                    workbook.Write(fs);
-                } 
             }
             catch (Exception ex)
             {

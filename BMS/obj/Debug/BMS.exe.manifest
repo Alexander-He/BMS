@@ -43,14 +43,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BMS.exe" size="242688">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AutoMapper.dll" size="273920">
+      <assemblyIdentity name="AutoMapper" version="7.0.1.0" publicKeyToken="BE96CD2C38EF1005" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>HFFt/zoRyNbFmHSEx4qpcA1ENT7+RdhQv6GovXiz1x8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BMS.exe" size="409600">
       <assemblyIdentity name="BMS" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>l+3i4j/6Dy+qp1KO6hlivWXMR8vmCItc4UkjRewKnyU=</dsig:DigestValue>
+        <dsig:DigestValue>fMGhgjSCFrVdlCuMjkvA4q6pEArYU20oIv6y75PVEqk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -171,6 +183,18 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
         <dsig:DigestValue>Z2VU5gizx4LDQpDi7VrsJzMv5FBXFLWD1WvZZM4d61E=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="System.ValueTuple.dll" size="78992">
+      <assemblyIdentity name="System.ValueTuple" version="4.0.3.0" publicKeyToken="CC7B13FFCD2DDD51" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>1vsNz+4UkKgWgRftG1V1jxHbOEdUF7NmjRn4nctVy90=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

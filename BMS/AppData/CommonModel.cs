@@ -15,29 +15,29 @@ namespace BMS
         [Description("所属地")]
         Place,
         /// <summary>
-        /// 设计单位
+        /// 建筑结构
         /// </summary>
-        [Description("设计单位")]
-        DesignUnit,
-        /// <summary>
-        /// 施工单位
-        /// </summary>
-        [Description("施工单位")]
-        ConstructUnit,
-        /// <summary>
-        /// 监理单位
-        /// </summary>
-        [Description("监理单位")]
-        SupervisorUnit,
+        [Description("建筑结构")]
+        BuildStruct,
         /// <summary>
         /// 报建情况
         /// </summary>
         [Description("报建情况")]
         ReportCondition,
         /// <summary>
-        /// 建筑结构
+        /// 施工单位
         /// </summary>
-        [Description("建筑结构")]
-        BuildStruct
+        [Description("施工单位")]
+        ConstructUnit,
+        /// <summary>
+        /// 设计单位
+        /// </summary>
+        [Description("设计单位")]
+        DesignUnit,
+        /// <summary>
+        /// 监理单位
+        /// </summary>
+        [Description("监理单位")]
+        SupervisorUnit
     }
 }

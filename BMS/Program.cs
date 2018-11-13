@@ -1,3 +1,5 @@
+using AutoMapper;
+using BMS.Model;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -14,6 +16,9 @@ namespace BMS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            Mapper.Initialize(cfg => cfg.CreateMap<Project, ProjectShow>());               
+
             Application.Run(new Main());
         }
     }

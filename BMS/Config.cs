@@ -42,20 +42,30 @@ namespace BMS
         /// <param name="e"></param>
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty( txtName.Text.Trim()))
+            MetaDataType metaDataType = MetaDataType.Place;
+            string name = metaDataType.GetType().GetMember(metaDataType.ToString()).FirstOrDefault()?.GetCustomAttribute<DescriptionAttribute>()?.Description;
+            Enum.TryParse<MetaDataType>(cobxMetedataType.SelectedValue.ToString(), out metaDataType);
+            if (string.IsNullOrEmpty(txtName.Text.Trim()))
             {
-                MetaDataType metaDataType = MetaDataType.Place;
-                Enum.TryParse<MetaDataType>(cobxMetedataType.ValueMember, out metaDataType);
-                int Id = lbxMetadata.SelectedValue.ToInt();
-                string name = metaDataType.GetType().GetMember(metaDataType.ToString()).FirstOrDefault()?.GetCustomAttribute<DescriptionAttribute>()?.Description;
 
-                MessageBox.Show($"{name}的名称不可以为空");
+                MessageBox.Show($"{name}的名称不可以为空", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
+            if (!string.IsNullOrEmpty(txtName.Text.Trim()))
+            {
+                var sameNameItem = DataService.GetMetadata(txtName.Text.Trim(), metaDataType);
+                int Id = lbxMetadata.SelectedValue.ToInt();
+                if ((lblId.Text == "新增" && sameNameItem != null) || (lblId.Text != "新增" && sameNameItem != null && lblId.Text.ToInt() != sameNameItem.Id))
+                {
+                    MessageBox.Show($"{txtName.Text.Trim()}已经存在", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+            }
+
             MetaDataType temp = MetaDataType.Place;
-            Enum.TryParse<MetaDataType>(cobxMetedataType.ValueMember, out temp);
-            int newId = 0;
+            Enum.TryParse<MetaDataType>(cobxMetedataType.SelectedValue.ToString(), out temp);
+            Int64 newId = 0;
             if (lblId.Text == "新增")
             {
                 newId = DataService.AddMetadata(txtName.Text.Trim(), temp, txtRemark.Text.Trim());
@@ -87,17 +97,17 @@ namespace BMS
             if (lbxMetadata.SelectedItem != null)
             {
                 MetaDataType metaDataType = MetaDataType.Place;
-                Enum.TryParse<MetaDataType>(cobxMetedataType.ValueMember, out metaDataType);
+                Enum.TryParse<MetaDataType>(cobxMetedataType.SelectedValue.ToString(), out metaDataType);
                 int Id = lbxMetadata.SelectedValue.ToInt();
                 string name = metaDataType.GetType().GetMember(metaDataType.ToString()).FirstOrDefault()?.GetCustomAttribute<DescriptionAttribute>()?.Description;
 
 
                 if (DataService.IsMetadataInUse(Id, metaDataType))
                 {
-                    MessageBox.Show($"所选中的{name}仍然有工程项目在使用，不能删除。");
+                    MessageBox.Show($"所选中的{name}仍然有工程项目在使用，不能删除。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-                if (MessageBox.Show($"删除{name}", $"确认要删除选中的{name}吗？", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if (MessageBox.Show($"确认要删除选中的{name}吗？", $"删除{name}", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
                     DataService.DelMetadata(Id);
                 }
@@ -132,7 +142,10 @@ namespace BMS
 
         private void cobxMetedataType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            txtName.Text = string.Empty;
+            txtRemark.Text = string.Empty; 
             LoadMetaDataItems();
+            txtName.Focus();
         }
 
         #endregion
@@ -144,7 +157,7 @@ namespace BMS
         private void LoadMetaDataItems()
         {
             MetaDataType temp = MetaDataType.Place;
-            Enum.TryParse<MetaDataType>(cobxMetedataType.ValueMember, out temp);
+            Enum.TryParse<MetaDataType>(cobxMetedataType.SelectedValue.ToString(), out temp);
             var list = DataService.GetAllMetadata(temp);
 
             lbxMetadata.DataSource = list;

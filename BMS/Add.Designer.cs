@@ -28,6 +28,7 @@ namespace BMS
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Add));
             this.gbRecordArea = new System.Windows.Forms.GroupBox();
             this.txtProjectDesc = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -125,7 +126,7 @@ namespace BMS
             this.txtProjectDesc.Multiline = true;
             this.txtProjectDesc.Name = "txtProjectDesc";
             this.txtProjectDesc.Size = new System.Drawing.Size(620, 49);
-            this.txtProjectDesc.TabIndex = 47;
+            this.txtProjectDesc.TabIndex = 16;
             // 
             // label19
             // 
@@ -138,12 +139,12 @@ namespace BMS
             // 
             // cobxSupervisorUnit
             // 
-            this.cobxSupervisorUnit.DisplayMember = "Id";
+            this.cobxSupervisorUnit.DisplayMember = "Name";
             this.cobxSupervisorUnit.Location = new System.Drawing.Point(77, 154);
             this.cobxSupervisorUnit.Name = "cobxSupervisorUnit";
             this.cobxSupervisorUnit.Size = new System.Drawing.Size(263, 21);
-            this.cobxSupervisorUnit.TabIndex = 45;
-            this.cobxSupervisorUnit.ValueMember = "Name";
+            this.cobxSupervisorUnit.TabIndex = 10;
+            this.cobxSupervisorUnit.ValueMember = "Id";
             // 
             // label18
             // 
@@ -169,34 +170,35 @@ namespace BMS
             this.txtInvestigateCase.Multiline = true;
             this.txtInvestigateCase.Name = "txtInvestigateCase";
             this.txtInvestigateCase.Size = new System.Drawing.Size(620, 49);
-            this.txtInvestigateCase.TabIndex = 42;
+            this.txtInvestigateCase.TabIndex = 17;
             // 
             // cobxReportCondition
             // 
-            this.cobxReportCondition.DisplayMember = "Id";
+            this.cobxReportCondition.DisplayMember = "Name";
+            this.cobxReportCondition.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobxReportCondition.Location = new System.Drawing.Point(311, 98);
             this.cobxReportCondition.Name = "cobxReportCondition";
             this.cobxReportCondition.Size = new System.Drawing.Size(165, 21);
-            this.cobxReportCondition.TabIndex = 41;
-            this.cobxReportCondition.ValueMember = "Name";
+            this.cobxReportCondition.TabIndex = 6;
+            this.cobxReportCondition.ValueMember = "Id";
             // 
             // cobxConstructUnit
             // 
-            this.cobxConstructUnit.DisplayMember = "Id";
+            this.cobxConstructUnit.DisplayMember = "Name";
             this.cobxConstructUnit.Location = new System.Drawing.Point(416, 126);
             this.cobxConstructUnit.Name = "cobxConstructUnit";
             this.cobxConstructUnit.Size = new System.Drawing.Size(277, 21);
-            this.cobxConstructUnit.TabIndex = 40;
-            this.cobxConstructUnit.ValueMember = "Name";
+            this.cobxConstructUnit.TabIndex = 9;
+            this.cobxConstructUnit.ValueMember = "Id";
             // 
             // cobxDesignUnit
             // 
-            this.cobxDesignUnit.DisplayMember = "Id";
+            this.cobxDesignUnit.DisplayMember = "Name";
             this.cobxDesignUnit.Location = new System.Drawing.Point(77, 126);
             this.cobxDesignUnit.Name = "cobxDesignUnit";
             this.cobxDesignUnit.Size = new System.Drawing.Size(263, 21);
-            this.cobxDesignUnit.TabIndex = 39;
-            this.cobxDesignUnit.ValueMember = "Name";
+            this.cobxDesignUnit.TabIndex = 8;
+            this.cobxDesignUnit.ValueMember = "Id";
             // 
             // label16
             // 
@@ -212,7 +214,7 @@ namespace BMS
             this.txtCode.Location = new System.Drawing.Point(548, 14);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(145, 20);
-            this.txtCode.TabIndex = 38;
+            this.txtCode.TabIndex = 1;
             // 
             // label1
             // 
@@ -225,22 +227,26 @@ namespace BMS
             // 
             // cobxBuildStruct
             // 
+            this.cobxBuildStruct.DisplayMember = "Name";
+            this.cobxBuildStruct.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobxBuildStruct.Items.AddRange(new object[] {
             "´î½¨",
             "¿ò¼Ü"});
             this.cobxBuildStruct.Location = new System.Drawing.Point(553, 98);
             this.cobxBuildStruct.Name = "cobxBuildStruct";
             this.cobxBuildStruct.Size = new System.Drawing.Size(140, 21);
-            this.cobxBuildStruct.TabIndex = 14;
+            this.cobxBuildStruct.TabIndex = 7;
+            this.cobxBuildStruct.ValueMember = "Id";
             // 
             // cobxPlace
             // 
-            this.cobxPlace.DisplayMember = "Id";
+            this.cobxPlace.DisplayMember = "Name";
+            this.cobxPlace.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cobxPlace.Location = new System.Drawing.Point(77, 98);
             this.cobxPlace.Name = "cobxPlace";
             this.cobxPlace.Size = new System.Drawing.Size(165, 21);
-            this.cobxPlace.TabIndex = 8;
-            this.cobxPlace.ValueMember = "Name";
+            this.cobxPlace.TabIndex = 5;
+            this.cobxPlace.ValueMember = "Id";
             // 
             // label15
             // 
@@ -256,14 +262,14 @@ namespace BMS
             this.dtCheckDate.Location = new System.Drawing.Point(300, 210);
             this.dtCheckDate.Name = "dtCheckDate";
             this.dtCheckDate.Size = new System.Drawing.Size(151, 20);
-            this.dtCheckDate.TabIndex = 11;
+            this.dtCheckDate.TabIndex = 15;
             // 
             // dtWorkStartDate
             // 
             this.dtWorkStartDate.Location = new System.Drawing.Point(77, 210);
             this.dtWorkStartDate.Name = "dtWorkStartDate";
             this.dtWorkStartDate.Size = new System.Drawing.Size(150, 20);
-            this.dtWorkStartDate.TabIndex = 7;
+            this.dtWorkStartDate.TabIndex = 14;
             // 
             // label14
             // 
@@ -289,7 +295,7 @@ namespace BMS
             this.txtRemark.Multiline = true;
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(620, 95);
-            this.txtRemark.TabIndex = 15;
+            this.txtRemark.TabIndex = 18;
             // 
             // label12
             // 
@@ -314,7 +320,7 @@ namespace BMS
             this.txtProjectProgress.Location = new System.Drawing.Point(416, 154);
             this.txtProjectProgress.Name = "txtProjectProgress";
             this.txtProjectProgress.Size = new System.Drawing.Size(277, 20);
-            this.txtProjectProgress.TabIndex = 10;
+            this.txtProjectProgress.TabIndex = 11;
             // 
             // label10
             // 
@@ -330,7 +336,7 @@ namespace BMS
             this.txtBuildArea.Location = new System.Drawing.Point(592, 70);
             this.txtBuildArea.Name = "txtBuildArea";
             this.txtBuildArea.Size = new System.Drawing.Size(101, 20);
-            this.txtBuildArea.TabIndex = 9;
+            this.txtBuildArea.TabIndex = 4;
             // 
             // label8
             // 
@@ -355,7 +361,7 @@ namespace BMS
             this.txtContact.Location = new System.Drawing.Point(301, 182);
             this.txtContact.Name = "txtContact";
             this.txtContact.Size = new System.Drawing.Size(150, 20);
-            this.txtContact.TabIndex = 5;
+            this.txtContact.TabIndex = 13;
             // 
             // label6
             // 
@@ -380,7 +386,7 @@ namespace BMS
             this.txtWorkChargre.Location = new System.Drawing.Point(77, 182);
             this.txtWorkChargre.Name = "txtWorkChargre";
             this.txtWorkChargre.Size = new System.Drawing.Size(150, 20);
-            this.txtWorkChargre.TabIndex = 4;
+            this.txtWorkChargre.TabIndex = 12;
             // 
             // label5
             // 
@@ -421,7 +427,7 @@ namespace BMS
             this.txtAddress.Location = new System.Drawing.Point(77, 42);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(617, 20);
-            this.txtAddress.TabIndex = 1;
+            this.txtAddress.TabIndex = 2;
             // 
             // label2
             // 
@@ -435,9 +441,11 @@ namespace BMS
             // txtProjectName
             // 
             this.txtProjectName.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.txtProjectName.Location = new System.Drawing.Point(77, 14);
+            this.txtProjectName.Font = new System.Drawing.Font("Î¢ÈíÑÅºÚ", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtProjectName.ForeColor = System.Drawing.Color.Yellow;
+            this.txtProjectName.Location = new System.Drawing.Point(77, 10);
             this.txtProjectName.Name = "txtProjectName";
-            this.txtProjectName.Size = new System.Drawing.Size(416, 20);
+            this.txtProjectName.Size = new System.Drawing.Size(416, 27);
             this.txtProjectName.TabIndex = 0;
             // 
             // btnSave
@@ -445,7 +453,7 @@ namespace BMS
             this.btnSave.Location = new System.Drawing.Point(8, 479);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(74, 54);
-            this.btnSave.TabIndex = 2;
+            this.btnSave.TabIndex = 0;
             this.btnSave.Text = "±£´æ";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -458,6 +466,7 @@ namespace BMS
             this.ClientSize = new System.Drawing.Size(728, 545);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gbRecordArea);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Add";
             this.Text = "Modify";
             this.Load += new System.EventHandler(this.frmMain_Load);

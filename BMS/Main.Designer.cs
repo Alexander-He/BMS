@@ -30,26 +30,6 @@ namespace BMS
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.dgvMain = new System.Windows.Forms.DataGridView();
-            this.ProjectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BuildUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ConstructUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DesignUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SupervisorUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BuildStruct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Place = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WorkChargre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Conact = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProjectProgress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReportCondition = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WorkStartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CheckDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InvestigateCase = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BuildArea = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Remark = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtKey = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -74,37 +54,93 @@ namespace BMS
             this.txtRemark = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtInvestigateCase = new System.Windows.Forms.TextBox();
+            this.ProjectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Code = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PlaceName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReportConditionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CheckDateName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BuildUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ConstructUnitName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DesignUnitName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SupervisorUnitName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BuildStructName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WorkChargre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Contact = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProjectProgress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WorkStartDateName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvestigateCase = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BuildArea = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Remark = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreateDateName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Place = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ConstructUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DesignUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BuildStruct = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReportCondition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SupervisorUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WorkStartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CheckDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreateDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnImport = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbtnPlace = new System.Windows.Forms.RadioButton();
+            this.rbtnReport = new System.Windows.Forms.RadioButton();
+            this.rbtnCheckDate = new System.Windows.Forms.RadioButton();
+            this.cbxDA = new System.Windows.Forms.ComboBox();
+            this.sfd = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvMain
             // 
             this.dgvMain.AllowUserToAddRows = false;
-            this.dgvMain.AllowUserToOrderColumns = true;
+            this.dgvMain.AllowUserToDeleteRows = false;
+            this.dgvMain.AllowUserToResizeColumns = false;
+            this.dgvMain.AllowUserToResizeRows = false;
+            this.dgvMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvMain.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvMain.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
+            this.dgvMain.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             this.dgvMain.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProjectId,
             this.Code,
             this.ProjectName,
+            this.PlaceName,
+            this.ReportConditionName,
+            this.CheckDateName,
             this.Address,
             this.BuildUnit,
-            this.ConstructUnit,
-            this.DesignUnit,
-            this.SupervisorUnit,
-            this.BuildStruct,
-            this.Place,
+            this.ConstructUnitName,
+            this.DesignUnitName,
+            this.SupervisorUnitName,
+            this.BuildStructName,
             this.WorkChargre,
-            this.Conact,
+            this.Contact,
             this.ProjectDesc,
             this.ProjectProgress,
-            this.ReportCondition,
-            this.WorkStartDate,
-            this.CheckDate,
+            this.WorkStartDateName,
             this.InvestigateCase,
             this.BuildArea,
-            this.Remark});
-            this.dgvMain.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Remark,
+            this.CreateDateName,
+            this.Place,
+            this.ConstructUnit,
+            this.DesignUnit,
+            this.BuildStruct,
+            this.ReportCondition,
+            this.SupervisorUnit,
+            this.WorkStartDate,
+            this.CheckDate,
+            this.CreateDate});
+            this.dgvMain.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dgvMain.Location = new System.Drawing.Point(0, 102);
+            this.dgvMain.MultiSelect = false;
             this.dgvMain.Name = "dgvMain";
             this.dgvMain.RowHeadersVisible = false;
             this.dgvMain.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
@@ -113,183 +149,6 @@ namespace BMS
             this.dgvMain.Size = new System.Drawing.Size(1623, 670);
             this.dgvMain.TabIndex = 5;
             this.dgvMain.DoubleClick += new System.EventHandler(this.dgvMain_DoubleClick);
-            // 
-            // ProjectId
-            // 
-            this.ProjectId.DataPropertyName = "Id";
-            this.ProjectId.Frozen = true;
-            this.ProjectId.HeaderText = "主键";
-            this.ProjectId.Name = "ProjectId";
-            this.ProjectId.Visible = false;
-            this.ProjectId.Width = 56;
-            // 
-            // Code
-            // 
-            this.Code.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Code.DataPropertyName = "Code";
-            this.Code.Frozen = true;
-            this.Code.HeaderText = "编号";
-            this.Code.Name = "Code";
-            this.Code.ReadOnly = true;
-            this.Code.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Code.Width = 56;
-            // 
-            // ProjectName
-            // 
-            this.ProjectName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.ProjectName.DataPropertyName = "ProjectName";
-            this.ProjectName.Frozen = true;
-            this.ProjectName.HeaderText = "工程名称";
-            this.ProjectName.Name = "ProjectName";
-            this.ProjectName.ReadOnly = true;
-            this.ProjectName.Width = 80;
-            // 
-            // Address
-            // 
-            this.Address.DataPropertyName = "Address";
-            this.Address.HeaderText = "工程地址";
-            this.Address.Name = "Address";
-            this.Address.ReadOnly = true;
-            this.Address.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Address.Width = 80;
-            // 
-            // BuildUnit
-            // 
-            this.BuildUnit.DataPropertyName = "BuildUnit";
-            this.BuildUnit.HeaderText = "建设单位";
-            this.BuildUnit.Name = "BuildUnit";
-            this.BuildUnit.ReadOnly = true;
-            this.BuildUnit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.BuildUnit.Width = 80;
-            // 
-            // ConstructUnit
-            // 
-            this.ConstructUnit.DataPropertyName = "ConstructUnitName";
-            this.ConstructUnit.HeaderText = "施工单位";
-            this.ConstructUnit.Name = "ConstructUnit";
-            this.ConstructUnit.ReadOnly = true;
-            this.ConstructUnit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ConstructUnit.Width = 80;
-            // 
-            // DesignUnit
-            // 
-            this.DesignUnit.DataPropertyName = "DesignUnitName";
-            this.DesignUnit.HeaderText = "设计单位";
-            this.DesignUnit.Name = "DesignUnit";
-            this.DesignUnit.ReadOnly = true;
-            this.DesignUnit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.DesignUnit.Width = 80;
-            // 
-            // SupervisorUnit
-            // 
-            this.SupervisorUnit.DataPropertyName = "SupervisorUnit";
-            this.SupervisorUnit.HeaderText = "监理单位";
-            this.SupervisorUnit.Name = "SupervisorUnit";
-            this.SupervisorUnit.Width = 80;
-            // 
-            // BuildStruct
-            // 
-            this.BuildStruct.DataPropertyName = "BuildStructName";
-            this.BuildStruct.HeaderText = "建筑结构";
-            this.BuildStruct.Name = "BuildStruct";
-            this.BuildStruct.ReadOnly = true;
-            this.BuildStruct.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.BuildStruct.Width = 80;
-            // 
-            // Place
-            // 
-            this.Place.DataPropertyName = "PlaceName";
-            this.Place.HeaderText = "所属地";
-            this.Place.Name = "Place";
-            this.Place.ReadOnly = true;
-            this.Place.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Place.Width = 68;
-            // 
-            // WorkChargre
-            // 
-            this.WorkChargre.DataPropertyName = "WorkChargre";
-            this.WorkChargre.HeaderText = "负责人";
-            this.WorkChargre.Name = "WorkChargre";
-            this.WorkChargre.ReadOnly = true;
-            this.WorkChargre.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.WorkChargre.Width = 68;
-            // 
-            // Conact
-            // 
-            this.Conact.DataPropertyName = "Conact";
-            this.Conact.HeaderText = "联系电话";
-            this.Conact.Name = "Conact";
-            this.Conact.ReadOnly = true;
-            this.Conact.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Conact.Width = 80;
-            // 
-            // ProjectDesc
-            // 
-            this.ProjectDesc.DataPropertyName = "ProjectDesc";
-            this.ProjectDesc.HeaderText = "工程概况";
-            this.ProjectDesc.Name = "ProjectDesc";
-            this.ProjectDesc.Width = 80;
-            // 
-            // ProjectProgress
-            // 
-            this.ProjectProgress.DataPropertyName = "ProjectProgress";
-            this.ProjectProgress.HeaderText = "工程进度";
-            this.ProjectProgress.Name = "ProjectProgress";
-            this.ProjectProgress.ReadOnly = true;
-            this.ProjectProgress.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ProjectProgress.Width = 80;
-            // 
-            // ReportCondition
-            // 
-            this.ReportCondition.DataPropertyName = "ReportConditionName";
-            this.ReportCondition.HeaderText = "报建情况";
-            this.ReportCondition.Name = "ReportCondition";
-            this.ReportCondition.ReadOnly = true;
-            this.ReportCondition.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ReportCondition.Width = 80;
-            // 
-            // WorkStartDate
-            // 
-            this.WorkStartDate.DataPropertyName = "WorkStartDate";
-            this.WorkStartDate.HeaderText = "开工时间";
-            this.WorkStartDate.Name = "WorkStartDate";
-            this.WorkStartDate.ReadOnly = true;
-            this.WorkStartDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.WorkStartDate.Width = 80;
-            // 
-            // CheckDate
-            // 
-            this.CheckDate.DataPropertyName = "CheckDate";
-            this.CheckDate.HeaderText = "检查日期";
-            this.CheckDate.Name = "CheckDate";
-            this.CheckDate.ReadOnly = true;
-            this.CheckDate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CheckDate.Width = 80;
-            // 
-            // InvestigateCase
-            // 
-            this.InvestigateCase.DataPropertyName = "InvestigateCase";
-            this.InvestigateCase.HeaderText = "查处情况";
-            this.InvestigateCase.Name = "InvestigateCase";
-            this.InvestigateCase.Width = 80;
-            // 
-            // BuildArea
-            // 
-            this.BuildArea.DataPropertyName = "BuildArea";
-            this.BuildArea.HeaderText = "建筑面积";
-            this.BuildArea.Name = "BuildArea";
-            this.BuildArea.ReadOnly = true;
-            this.BuildArea.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.BuildArea.Width = 80;
-            // 
-            // Remark
-            // 
-            this.Remark.DataPropertyName = "Remark";
-            this.Remark.HeaderText = "备注";
-            this.Remark.Name = "Remark";
-            this.Remark.ReadOnly = true;
-            this.Remark.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Remark.Width = 56;
             // 
             // btnSearch
             // 
@@ -530,12 +389,334 @@ namespace BMS
             this.txtInvestigateCase.Size = new System.Drawing.Size(205, 20);
             this.txtInvestigateCase.TabIndex = 33;
             // 
+            // ProjectId
+            // 
+            this.ProjectId.DataPropertyName = "Id";
+            this.ProjectId.Frozen = true;
+            this.ProjectId.HeaderText = "主键";
+            this.ProjectId.Name = "ProjectId";
+            this.ProjectId.ReadOnly = true;
+            this.ProjectId.Visible = false;
+            this.ProjectId.Width = 56;
+            // 
+            // Code
+            // 
+            this.Code.DataPropertyName = "Code";
+            this.Code.Frozen = true;
+            this.Code.HeaderText = "编号";
+            this.Code.Name = "Code";
+            this.Code.ReadOnly = true;
+            this.Code.Width = 56;
+            // 
+            // ProjectName
+            // 
+            this.ProjectName.DataPropertyName = "ProjectName";
+            this.ProjectName.Frozen = true;
+            this.ProjectName.HeaderText = "工程名称";
+            this.ProjectName.Name = "ProjectName";
+            this.ProjectName.ReadOnly = true;
+            this.ProjectName.Width = 80;
+            // 
+            // PlaceName
+            // 
+            this.PlaceName.DataPropertyName = "PlaceName";
+            this.PlaceName.HeaderText = "所属地";
+            this.PlaceName.Name = "PlaceName";
+            this.PlaceName.ReadOnly = true;
+            this.PlaceName.Width = 68;
+            // 
+            // ReportConditionName
+            // 
+            this.ReportConditionName.DataPropertyName = "ReportConditionName";
+            this.ReportConditionName.HeaderText = "报建情况";
+            this.ReportConditionName.Name = "ReportConditionName";
+            this.ReportConditionName.ReadOnly = true;
+            this.ReportConditionName.Width = 80;
+            // 
+            // CheckDateName
+            // 
+            this.CheckDateName.DataPropertyName = "CheckDateName";
+            this.CheckDateName.HeaderText = "检查日期";
+            this.CheckDateName.Name = "CheckDateName";
+            this.CheckDateName.ReadOnly = true;
+            this.CheckDateName.Width = 80;
+            // 
+            // Address
+            // 
+            this.Address.DataPropertyName = "Address";
+            this.Address.HeaderText = "工程地址";
+            this.Address.Name = "Address";
+            this.Address.ReadOnly = true;
+            this.Address.Width = 80;
+            // 
+            // BuildUnit
+            // 
+            this.BuildUnit.DataPropertyName = "BuildUnit";
+            this.BuildUnit.HeaderText = "建设单位";
+            this.BuildUnit.Name = "BuildUnit";
+            this.BuildUnit.ReadOnly = true;
+            this.BuildUnit.Width = 80;
+            // 
+            // ConstructUnitName
+            // 
+            this.ConstructUnitName.DataPropertyName = "ConstructUnitName";
+            this.ConstructUnitName.HeaderText = "施工单位";
+            this.ConstructUnitName.Name = "ConstructUnitName";
+            this.ConstructUnitName.ReadOnly = true;
+            this.ConstructUnitName.Width = 80;
+            // 
+            // DesignUnitName
+            // 
+            this.DesignUnitName.DataPropertyName = "DesignUnitName";
+            this.DesignUnitName.HeaderText = "设计单位";
+            this.DesignUnitName.Name = "DesignUnitName";
+            this.DesignUnitName.ReadOnly = true;
+            this.DesignUnitName.Width = 80;
+            // 
+            // SupervisorUnitName
+            // 
+            this.SupervisorUnitName.DataPropertyName = "SupervisorUnitName";
+            this.SupervisorUnitName.HeaderText = "监理单位";
+            this.SupervisorUnitName.Name = "SupervisorUnitName";
+            this.SupervisorUnitName.ReadOnly = true;
+            this.SupervisorUnitName.Width = 80;
+            // 
+            // BuildStructName
+            // 
+            this.BuildStructName.DataPropertyName = "BuildStructName";
+            this.BuildStructName.HeaderText = "建筑结构";
+            this.BuildStructName.Name = "BuildStructName";
+            this.BuildStructName.ReadOnly = true;
+            this.BuildStructName.Width = 80;
+            // 
+            // WorkChargre
+            // 
+            this.WorkChargre.DataPropertyName = "WorkChargre";
+            this.WorkChargre.HeaderText = "负责人";
+            this.WorkChargre.Name = "WorkChargre";
+            this.WorkChargre.ReadOnly = true;
+            this.WorkChargre.Width = 68;
+            // 
+            // Contact
+            // 
+            this.Contact.DataPropertyName = "Contact";
+            this.Contact.HeaderText = "联系电话";
+            this.Contact.Name = "Contact";
+            this.Contact.ReadOnly = true;
+            this.Contact.Width = 80;
+            // 
+            // ProjectDesc
+            // 
+            this.ProjectDesc.DataPropertyName = "ProjectDesc";
+            this.ProjectDesc.HeaderText = "工程概况";
+            this.ProjectDesc.Name = "ProjectDesc";
+            this.ProjectDesc.ReadOnly = true;
+            this.ProjectDesc.Width = 80;
+            // 
+            // ProjectProgress
+            // 
+            this.ProjectProgress.DataPropertyName = "ProjectProgress";
+            this.ProjectProgress.HeaderText = "工程进度";
+            this.ProjectProgress.Name = "ProjectProgress";
+            this.ProjectProgress.ReadOnly = true;
+            this.ProjectProgress.Width = 80;
+            // 
+            // WorkStartDateName
+            // 
+            this.WorkStartDateName.DataPropertyName = "WorkStartDateName";
+            this.WorkStartDateName.HeaderText = "开工时间";
+            this.WorkStartDateName.Name = "WorkStartDateName";
+            this.WorkStartDateName.ReadOnly = true;
+            this.WorkStartDateName.Width = 80;
+            // 
+            // InvestigateCase
+            // 
+            this.InvestigateCase.DataPropertyName = "InvestigateCase";
+            this.InvestigateCase.HeaderText = "查处情况";
+            this.InvestigateCase.Name = "InvestigateCase";
+            this.InvestigateCase.ReadOnly = true;
+            this.InvestigateCase.Width = 80;
+            // 
+            // BuildArea
+            // 
+            this.BuildArea.DataPropertyName = "BuildArea";
+            this.BuildArea.HeaderText = "建筑面积";
+            this.BuildArea.Name = "BuildArea";
+            this.BuildArea.ReadOnly = true;
+            this.BuildArea.Width = 80;
+            // 
+            // Remark
+            // 
+            this.Remark.DataPropertyName = "Remark";
+            this.Remark.HeaderText = "备注";
+            this.Remark.Name = "Remark";
+            this.Remark.ReadOnly = true;
+            this.Remark.Width = 56;
+            // 
+            // CreateDateName
+            // 
+            this.CreateDateName.DataPropertyName = "CreateDateName";
+            this.CreateDateName.HeaderText = "创建时间";
+            this.CreateDateName.Name = "CreateDateName";
+            this.CreateDateName.ReadOnly = true;
+            this.CreateDateName.Width = 80;
+            // 
+            // Place
+            // 
+            this.Place.DataPropertyName = "Place";
+            this.Place.HeaderText = "Place";
+            this.Place.Name = "Place";
+            this.Place.Visible = false;
+            this.Place.Width = 59;
+            // 
+            // ConstructUnit
+            // 
+            this.ConstructUnit.DataPropertyName = "ConstructUnit";
+            this.ConstructUnit.HeaderText = "ConstructUnit";
+            this.ConstructUnit.Name = "ConstructUnit";
+            this.ConstructUnit.Visible = false;
+            this.ConstructUnit.Width = 96;
+            // 
+            // DesignUnit
+            // 
+            this.DesignUnit.DataPropertyName = "DesignUnit";
+            this.DesignUnit.HeaderText = "DesignUnit";
+            this.DesignUnit.Name = "DesignUnit";
+            this.DesignUnit.Visible = false;
+            this.DesignUnit.Width = 84;
+            // 
+            // BuildStruct
+            // 
+            this.BuildStruct.DataPropertyName = "BuildStruct";
+            this.BuildStruct.HeaderText = "BuildStruct";
+            this.BuildStruct.Name = "BuildStruct";
+            this.BuildStruct.Visible = false;
+            this.BuildStruct.Width = 83;
+            // 
+            // ReportCondition
+            // 
+            this.ReportCondition.DataPropertyName = "ReportCondition";
+            this.ReportCondition.HeaderText = "ReportCondition";
+            this.ReportCondition.Name = "ReportCondition";
+            this.ReportCondition.Visible = false;
+            this.ReportCondition.Width = 108;
+            // 
+            // SupervisorUnit
+            // 
+            this.SupervisorUnit.DataPropertyName = "SupervisorUnit";
+            this.SupervisorUnit.HeaderText = "SupervisorUnit";
+            this.SupervisorUnit.Name = "SupervisorUnit";
+            this.SupervisorUnit.Visible = false;
+            this.SupervisorUnit.Width = 101;
+            // 
+            // WorkStartDate
+            // 
+            this.WorkStartDate.DataPropertyName = "WorkStartDate";
+            this.WorkStartDate.HeaderText = "WorkStartDate";
+            this.WorkStartDate.Name = "WorkStartDate";
+            this.WorkStartDate.Visible = false;
+            this.WorkStartDate.Width = 103;
+            // 
+            // CheckDate
+            // 
+            this.CheckDate.DataPropertyName = "CheckDate";
+            this.CheckDate.HeaderText = "CheckDate";
+            this.CheckDate.Name = "CheckDate";
+            this.CheckDate.Visible = false;
+            this.CheckDate.Width = 86;
+            // 
+            // CreateDate
+            // 
+            this.CreateDate.DataPropertyName = "CreateDate";
+            this.CreateDate.HeaderText = "CreateDate";
+            this.CreateDate.Name = "CreateDate";
+            this.CreateDate.Visible = false;
+            this.CreateDate.Width = 86;
+            // 
+            // btnImport
+            // 
+            this.btnImport.Font = new System.Drawing.Font("微软雅黑", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnImport.Location = new System.Drawing.Point(590, 54);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(109, 40);
+            this.btnImport.TabIndex = 35;
+            this.btnImport.Text = "导入";
+            this.btnImport.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.cbxDA);
+            this.groupBox1.Controls.Add(this.rbtnCheckDate);
+            this.groupBox1.Controls.Add(this.rbtnReport);
+            this.groupBox1.Controls.Add(this.rbtnPlace);
+            this.groupBox1.Location = new System.Drawing.Point(711, 55);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(334, 39);
+            this.groupBox1.TabIndex = 36;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "排序";
+            // 
+            // rbtnPlace
+            // 
+            this.rbtnPlace.AutoSize = true;
+            this.rbtnPlace.Checked = true;
+            this.rbtnPlace.Location = new System.Drawing.Point(6, 16);
+            this.rbtnPlace.Name = "rbtnPlace";
+            this.rbtnPlace.Size = new System.Drawing.Size(61, 17);
+            this.rbtnPlace.TabIndex = 0;
+            this.rbtnPlace.TabStop = true;
+            this.rbtnPlace.Text = "所属地";
+            this.rbtnPlace.UseVisualStyleBackColor = true;
+            // 
+            // rbtnReport
+            // 
+            this.rbtnReport.AutoSize = true;
+            this.rbtnReport.Location = new System.Drawing.Point(73, 16);
+            this.rbtnReport.Name = "rbtnReport";
+            this.rbtnReport.Size = new System.Drawing.Size(73, 17);
+            this.rbtnReport.TabIndex = 1;
+            this.rbtnReport.Text = "报建情况";
+            this.rbtnReport.UseVisualStyleBackColor = true;
+            // 
+            // rbtnCheckDate
+            // 
+            this.rbtnCheckDate.AutoSize = true;
+            this.rbtnCheckDate.Location = new System.Drawing.Point(152, 16);
+            this.rbtnCheckDate.Name = "rbtnCheckDate";
+            this.rbtnCheckDate.Size = new System.Drawing.Size(73, 17);
+            this.rbtnCheckDate.TabIndex = 2;
+            this.rbtnCheckDate.Text = "检查日期";
+            this.rbtnCheckDate.UseVisualStyleBackColor = true;
+            // 
+            // cbxDA
+            // 
+            this.cbxDA.AutoCompleteCustomSource.AddRange(new string[] {
+            "正序",
+            "倒序"});
+            this.cbxDA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxDA.FormattingEnabled = true;
+            this.cbxDA.Items.AddRange(new object[] {
+            "正序",
+            "倒序"});
+            this.cbxDA.Location = new System.Drawing.Point(233, 11);
+            this.cbxDA.Name = "cbxDA";
+            this.cbxDA.Size = new System.Drawing.Size(95, 21);
+            this.cbxDA.TabIndex = 3;
+            // 
+            // sfd
+            // 
+            this.sfd.DefaultExt = "xlsx";
+            this.sfd.Filter = "Excel 文件|*.xlsx";
+            this.sfd.Title = "请选择保存目录";
+            // 
             // Main
             // 
             this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1623, 772);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnImport);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtInvestigateCase);
             this.Controls.Add(this.label8);
@@ -567,6 +748,8 @@ namespace BMS
             this.Text = "BMS";
             this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -597,27 +780,44 @@ namespace BMS
         private System.Windows.Forms.TextBox txtRemark;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtInvestigateCase;
+        private System.Windows.Forms.DataGridView dgvMain;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Code;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PlaceName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReportConditionName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CheckDateName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.DataGridViewTextBoxColumn BuildUnit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ConstructUnit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DesignUnit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SupervisorUnit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BuildStruct;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Place;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ConstructUnitName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DesignUnitName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SupervisorUnitName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BuildStructName;
         private System.Windows.Forms.DataGridViewTextBoxColumn WorkChargre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Conact;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Contact;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectDesc;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjectProgress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReportCondition;
-        private System.Windows.Forms.DataGridViewTextBoxColumn WorkStartDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CheckDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WorkStartDateName;
         private System.Windows.Forms.DataGridViewTextBoxColumn InvestigateCase;
         private System.Windows.Forms.DataGridViewTextBoxColumn BuildArea;
         private System.Windows.Forms.DataGridViewTextBoxColumn Remark;
-        private System.Windows.Forms.DataGridView dgvMain;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CreateDateName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Place;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ConstructUnit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DesignUnit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BuildStruct;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReportCondition;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SupervisorUnit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WorkStartDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CheckDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CreateDate;
+        private System.Windows.Forms.Button btnImport;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox cbxDA;
+        private System.Windows.Forms.RadioButton rbtnCheckDate;
+        private System.Windows.Forms.RadioButton rbtnReport;
+        private System.Windows.Forms.RadioButton rbtnPlace;
+        private System.Windows.Forms.SaveFileDialog sfd;
     }
 }
 

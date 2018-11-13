@@ -16,6 +16,10 @@ namespace BMS.AppData
         }
 
         public DbSet<Project> Projects { get; set; }
-        public DbSet<PropertyMetadata> PropertyMetadatas { get; set; } 
+        public DbSet<PropertyMetadata> PropertyMetadatas { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+        }
     }
 }

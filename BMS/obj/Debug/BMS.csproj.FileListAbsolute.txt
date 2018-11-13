@@ -32,3 +32,8 @@ E:\BMS\BMS\bin\Debug\NPOI.dll
 E:\BMS\BMS\bin\Debug\NPOI.OOXML.dll
 E:\BMS\BMS\bin\Debug\NPOI.OpenXml4Net.dll
 E:\BMS\BMS\bin\Debug\NPOI.OpenXmlFormats.dll
+E:\BMS\BMS\bin\Debug\AutoMapper.dll
+E:\BMS\BMS\bin\Debug\System.ValueTuple.dll
+E:\BMS\BMS\bin\Debug\AutoMapper.pdb
+E:\BMS\BMS\bin\Debug\AutoMapper.xml
+E:\BMS\BMS\bin\Debug\System.ValueTuple.xml

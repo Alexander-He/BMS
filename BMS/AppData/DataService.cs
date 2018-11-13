@@ -1,4 +1,5 @@
-﻿using BMS.AppData;
+﻿using AutoMapper;
+using BMS.AppData;
 using BMS.Model;
 using System;
 using System.Collections.Generic;
@@ -21,12 +22,16 @@ namespace BMS
                         return context.Projects.Any(x => x.Place == Id);
                     case MetaDataType.DesignUnit:
                         return context.Projects.Any(x => x.DesignUnit == Id);
+
                     case MetaDataType.ConstructUnit:
                         return context.Projects.Any(x => x.ConstructUnit == Id);
+
                     case MetaDataType.SupervisorUnit:
                         return context.Projects.Any(x => x.SupervisorUnit == Id);
+
                     case MetaDataType.ReportCondition:
                         return context.Projects.Any(x => x.ReportCondition == Id);
+
                     case MetaDataType.BuildStruct:
                         return context.Projects.Any(x => x.BuildStruct == Id);
                     default:
@@ -34,11 +39,28 @@ namespace BMS
                 }
             }
         }
-        public static Project GetProject(Guid Id)
+
+        public static Project GetProject(string Id)
+        {
+            using (BMSContext context = new BMSContext())
+            { 
+                return context.Projects.FirstOrDefault(x => x.Id == Id);
+            }
+        }
+
+        public static Project GetProjectByName(string name)
         {
             using (BMSContext context = new BMSContext())
             {
-                return context.Projects.FirstOrDefault(x => x.Id == Id);
+                return context.Projects.FirstOrDefault(x => x.ProjectName == name);
+            }
+        }
+
+        public static Project GetProjectByCode(string code)
+        {
+            using (BMSContext context = new BMSContext())
+            {
+                return context.Projects.FirstOrDefault(x => x.Code == code);
             }
         }
         public static int AddProject(Project entity)
@@ -89,7 +111,7 @@ namespace BMS
             return 0;
         }
 
-        public static int DelProject(List<Guid> Ids)
+        public static int DelProject(List<string> Ids)
         {
             using (BMSContext context = new BMSContext())
             {
@@ -159,20 +181,12 @@ namespace BMS
         /// <param name="type"></param>
         /// <param name="remark"></param>
         /// <returns></returns>
-        public static int AddMetadata(string name, MetaDataType type, string remark)
+        public static Int64 AddMetadata(string name, MetaDataType type, string remark)
         {
             using (BMSContext context = new BMSContext())
             {
-                var list = GetAllMetadata(type);
-                int newId = 1;
-                if (list.Count > 0)
-                {
-                    newId = list.Where(x => x.Type == type.ToString()).Max(x => x.Id) + 1;
-                }
-
                 PropertyMetadata entity = new PropertyMetadata
                 {
-                    Id = newId,
                     Type = type.ToString(),
                     Name = name,
                     Remark = remark
@@ -180,7 +194,7 @@ namespace BMS
                 context.PropertyMetadatas.Add(entity);
                 if (context.SaveChanges() > 0)
                 {
-                    return newId;
+                    return entity.Id;
                 }
                 else
                 {
@@ -246,46 +260,9 @@ namespace BMS
             var list = new List<ProjectShow>();
             using (BMSContext context = new BMSContext())
             {
-                var query = from project in context.Projects
-                            let Place = context.PropertyMetadatas.FirstOrDefault(x => x.Id == project.Place && x.Type == MetaDataType.Place.ToString())
-                            let DesignUnit = context.PropertyMetadatas.FirstOrDefault(x => x.Id == project.DesignUnit && x.Type == MetaDataType.DesignUnit.ToString())
-                            let ConstructUnit = context.PropertyMetadatas.FirstOrDefault(x => x.Id == project.ConstructUnit && x.Type == MetaDataType.ConstructUnit.ToString())
-                            let SupervisorUnit = context.PropertyMetadatas.FirstOrDefault(x => x.Id == project.SupervisorUnit && x.Type == MetaDataType.SupervisorUnit.ToString())
-                            let ReportCondition = context.PropertyMetadatas.FirstOrDefault(x => x.Id == project.ReportCondition && x.Type == MetaDataType.ReportCondition.ToString())
-                            let BuildStruct = context.PropertyMetadatas.FirstOrDefault(x => x.Id == project.BuildStruct && x.Type == MetaDataType.BuildStruct.ToString())
-                            select new ProjectShow()
-                            {
-                                Id = project.Id,
-                                ProjectName = project.ProjectName,
-                                Code = project.Code,
-                                Address = project.Address,
-                                BuildUnit = project.BuildUnit,
-                                WorkChargre = project.WorkChargre,
-                                Contact = project.Contact,
-                                ProjectDesc = project.ProjectDesc,
-                                ProjectProgress = project.ProjectProgress,
-                                BuildArea = project.BuildArea,
-                                InvestigateCase = project.InvestigateCase,
-                                Remark = project.Remark,
-                                CreateDate = project.CreateDate,
-                                WorkStartDate = project.WorkStartDate,
-                                CheckDate = project.CheckDate,
-                                Place = project.Place,
-                                DesignUnit = project.DesignUnit,
-                                ConstructUnit = project.ConstructUnit,
-                                SupervisorUnit = project.SupervisorUnit,
-                                ReportCondition = project.ReportCondition,
-                                BuildStruct = project.BuildStruct,
-                                CreateDateName = project.CreateDate.ToString("yyyy-MM-dd"),
-                                WorkStartDateName = project.WorkStartDate.ToString("yyyy-MM-dd"),
-                                CheckDateName = project.CheckDate.HasValue ? project.CheckDate.Value.ToString("yyyy-MM-dd") : "",
-                                PlaceName = Place.Name,
-                                DesignUnitName = DesignUnit.Name,
-                                ConstructUnitName = ConstructUnit.Name,
-                                SupervisorUnitName = SupervisorUnit.Name,
-                                ReportConditionName = ReportCondition.Name,
-                                BuildStructName = BuildStruct.Name,
-                            };
+                var propertiesMetadata = context.PropertyMetadatas.ToList();
+
+                var query = context.Projects.Select(x => x);
 
                 if (conditions.CheckDateStart.HasValue)
                 {
@@ -293,7 +270,8 @@ namespace BMS
                 }
                 if (conditions.CheckDateEnd.HasValue)
                 {
-                    query = query.Where(x => x.CheckDate < conditions.CheckDateEnd.Value.AddDays(1));
+                    DateTime dtTemp = conditions.CheckDateEnd.Value.AddDays(1);
+                    query = query.Where(x => x.CheckDate < dtTemp);
                 }
                 if (conditions.Place > 0)
                 {
@@ -333,7 +311,8 @@ namespace BMS
                                           || x.BuildArea.Contains(conditions.Keyword)
                                           || x.InvestigateCase.Contains(conditions.Keyword));
                 }
-
+                var listProject = query.OrderByDescending(x => x.CreateDate).ToList();
+                listProject.ForEach(x => list.Add(x.ToShow(propertiesMetadata)));
             }
             return list;
         }
