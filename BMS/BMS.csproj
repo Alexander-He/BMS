@@ -171,7 +171,6 @@
     <None Include="AppData\BMS.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="BMS_TemporaryKey.pfx" />
     <None Include="doc\Demo.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -196,9 +195,6 @@
     <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BMS.mdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Clock-2.ico" />
   </ItemGroup>
   <ItemGroup>
