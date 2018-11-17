@@ -12,6 +12,7 @@ using BMS.AppData;
 using System.Linq;
 using BMS.Model;
 using NPOI.XSSF.UserModel;
+using NPOI.SS.UserModel;
 
 namespace BMS
 {
@@ -75,7 +76,7 @@ namespace BMS
                 else
                     list = list.OrderByDescending(x => x.CheckDate).ToList();
             }
-            dgvMain.DataSource = list;
+            ofd.DataSource = list;
         }
         /// <summary>
         /// 新增
@@ -85,8 +86,7 @@ namespace BMS
         private void btnAdd_Click(object sender, EventArgs e)
         {
             Add frm = new Add();
-            frm.Show();
-            if (frm.DialogResult == DialogResult.OK)
+            if (frm.ShowDialog() == DialogResult.OK)
             {
                 btnSearch_Click(null, null);
             }
@@ -101,9 +101,9 @@ namespace BMS
             if (DialogResult.OK == MessageBox.Show("确定删除所选中的项目吗？", "删除项目", MessageBoxButtons.OKCancel))
             {
                 var Ids = new List<string>();
-                for (int i = 0; i < dgvMain.SelectedRows.Count; i++)
+                for (int i = 0; i < ofd.SelectedRows.Count; i++)
                 {
-                    Ids.Add(dgvMain.SelectedRows[i].Cells[0].Value.ToString());
+                    Ids.Add(ofd.SelectedRows[i].Cells[0].Value.ToString());
                 }
                 DataService.DelProject(Ids);
                 btnSearch_Click(null, null);
@@ -135,12 +135,15 @@ namespace BMS
         /// <param name="e"></param>
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (dgvMain.SelectedRows != null && dgvMain.SelectedRows.Count > 0)
+            if (ofd.SelectedRows != null && ofd.SelectedRows.Count > 0)
             {
                 Add frm = new Add();
-                frm.strID = dgvMain.SelectedRows[0].Cells[0].Value.ToString();
+                frm.strID = ofd.SelectedRows[0].Cells[0].Value.ToString();
                 frm.ModifyType = "update";
-                frm.Show();
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    btnSearch_Click(null, null);
+                }
             }
             else
             {
@@ -154,12 +157,15 @@ namespace BMS
         /// <param name="e"></param>
         private void dgvMain_DoubleClick(object sender, EventArgs e)
         {
-            if (dgvMain.SelectedRows != null && dgvMain.SelectedRows.Count > 0)
+            if (ofd.SelectedRows != null && ofd.SelectedRows.Count > 0)
             {
                 Add frm = new Add();
-                frm.strID = dgvMain.SelectedRows[0].Cells[0].Value.ToString();
+                frm.strID = ofd.SelectedRows[0].Cells[0].Value.ToString();
                 frm.ModifyType = "update";
-                frm.Show();
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    btnSearch_Click(null, null);
+                }
             }
         }
         /// <summary>
@@ -170,7 +176,10 @@ namespace BMS
         private void btnConfig_Click(object sender, EventArgs e)
         {
             Config frm = new Config();
-            frm.Show();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                Main_Load(null, null);
+            }
         }
 
         /// <summary>
@@ -180,9 +189,9 @@ namespace BMS
         /// <param name="e"></param>
         private void btnExport_Click(object sender, EventArgs e)
         {
-            if (dgvMain.DataSource != null)
+            if (ofd.DataSource != null)
             {
-                var data = (List<ProjectShow>)dgvMain.DataSource;
+                var data = (List<ProjectShow>)ofd.DataSource;
                 if (data.Count > 0)
                 {
                     ExportExcel(data);
@@ -196,6 +205,21 @@ namespace BMS
             {
                 MessageBox.Show("没有可以导出的数据");
             }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string path = string.Empty;
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                path = sfd.FileName;
+                File.Copy(@"doc\导入模板.xlsx", path, true);
+            }
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            ImportProject();
         }
         #endregion
 
@@ -212,9 +236,9 @@ namespace BMS
             dtDateStart.Value = Convert.ToDateTime("2008-01-01");
             dtDateEnd.Value = DateTime.Now;
 
-            dgvMain.AllowUserToOrderColumns = true;
-            dgvMain.AllowUserToResizeColumns = true;
-            dgvMain.AllowUserToResizeRows = true;
+            ofd.AllowUserToOrderColumns = true;
+            ofd.AllowUserToResizeColumns = true;
+            ofd.AllowUserToResizeRows = true;
 
             var listPlace = DataService.GetAllMetadata(MetaDataType.Place);
             var listBuildStruct = DataService.GetAllMetadata(MetaDataType.BuildStruct);
@@ -264,10 +288,25 @@ namespace BMS
                     cellStyle.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
                     //set header
                     XSSFRow rowHeader = (XSSFRow)sheet.CreateRow(2);
+
+                    ICellStyle style1 = workbook.CreateCellStyle();
+                    style1.FillForegroundColor = NPOI.HSSF.Util.HSSFColor.LightBlue.Index;
+                    style1.FillPattern = FillPattern.SolidForeground;
+                    style1.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thin;
+                    style1.BorderLeft = NPOI.SS.UserModel.BorderStyle.Thin;
+                    style1.BorderRight = NPOI.SS.UserModel.BorderStyle.Thin;
+                    style1.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
+
+                    IFont font1 = workbook.CreateFont();
+                    font1.Color = NPOI.HSSF.Util.HSSFColor.White.Index;
+                    font1.IsBold = true;
+
+                    style1.SetFont(font1);
+
                     for (int i = 0; i < headerField.Length; i++)
                     {
                         XSSFCell cell = rowHeader.CreateCell(i) as XSSFCell;
-                        cell.CellStyle = cellStyle;
+                        cell.CellStyle = style1;
                         rowHeader.Cells[i].SetCellValue(headerField[i]);
                     }
 
@@ -303,7 +342,7 @@ namespace BMS
                     }
 
 
-                    using (FileStream fs = new FileStream(path, FileMode.CreateNew))
+                    using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
                     {
                         workbook.Write(fs);
                     }
@@ -315,42 +354,143 @@ namespace BMS
             }
         }
 
+        private void ImportProject()
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                XSSFWorkbook workbook = new XSSFWorkbook(openFileDialog.FileName);
+                XSSFSheet sheet = (XSSFSheet)workbook.GetSheetAt(0);
+                int line = 3, col = 1;
+                List<Project> list = new List<Project>();
+                XSSFRow row = sheet.GetRow(line) as XSSFRow;
+                while (!string.IsNullOrWhiteSpace(row.Cells[col + 1].StringCellValue))
+                {
+                    Project project = new Project();
+
+                    project.Id = Guid.NewGuid().ToString();
+                    project.Code = row.Cells[col].StringCellValue.Trim();
+                    project.ProjectName = row.Cells[col + 1].StringCellValue.Trim();
+                    project.Address = row.Cells[col + 2].StringCellValue.Trim();
+                    project.BuildUnit = row.Cells[col + 3].StringCellValue.Trim();
+                    project.WorkChargre = row.Cells[col + 7].StringCellValue.Trim();
+                    project.Contact = row.Cells[col + 8].StringCellValue.Trim();
+                    project.ProjectDesc = row.Cells[col + 9].StringCellValue.Trim();
+                    project.ProjectProgress = row.Cells[col + 10].StringCellValue.Trim();
+                    project.WorkStartDate = row.Cells[col + 12].DateCellValue;
+                    project.CheckDate = row.Cells[col + 13].DateCellValue;
+                    project.InvestigateCase = row.Cells[col + 14].StringCellValue.Trim();
+                    project.Remark = row.Cells[col + 15].StringCellValue.Trim();
+                    if (row.Cells[col + 18].CellType == CellType.Numeric)  
+                        project.BuildArea = row.Cells[col + 18].NumericCellValue.ToString();           
+                    else
+                        project.BuildArea = row.Cells[col + 18].StringCellValue.Trim();
 
 
+                    var strConstructUnit = row.Cells[col + 4].StringCellValue.Trim();
+                    var strDesignUnit = row.Cells[col + 5].StringCellValue.Trim();
+                    var strSupervisorUnit = row.Cells[col + 6].StringCellValue.Trim();
+                    var strReportCondition = row.Cells[col + 11].StringCellValue.Trim();
+                    var strPlace = row.Cells[col + 16].StringCellValue.Trim();
+                    var strBuildStruct = row.Cells[col + 17].StringCellValue.Trim();
+
+                    var ConstructUnit = DataService.GetMetadata(strConstructUnit, MetaDataType.ConstructUnit);
+                    if (ConstructUnit == null)
+                    {
+                        ConstructUnit = new PropertyMetadata();
+                        ConstructUnit.Id = DataService.AddMetadata(strConstructUnit, MetaDataType.ConstructUnit, "导入数据自动创建");
+                    }
+                    project.ConstructUnit = ConstructUnit.Id;
 
 
+                    var DesignUnit = DataService.GetMetadata(strDesignUnit, MetaDataType.DesignUnit);
+                    if (DesignUnit == null)
+                    {
+                        DesignUnit = new PropertyMetadata();
+                        DesignUnit.Id = DataService.AddMetadata(strDesignUnit, MetaDataType.DesignUnit, "导入数据自动创建");
+                    }
+                    project.DesignUnit = DesignUnit.Id;
 
 
+                    var SupervisorUnit = DataService.GetMetadata(strSupervisorUnit, MetaDataType.SupervisorUnit);
+                    if (SupervisorUnit == null)
+                    {
+                        SupervisorUnit = new PropertyMetadata();
+                        SupervisorUnit.Id = DataService.AddMetadata(strSupervisorUnit, MetaDataType.SupervisorUnit, "导入数据自动创建");
+                    }
+                    project.SupervisorUnit = SupervisorUnit.Id;
 
 
+                    var ReportCondition = DataService.GetMetadata(strReportCondition, MetaDataType.ReportCondition);
+                    if (ReportCondition == null)
+                    {
+                        ReportCondition = new PropertyMetadata();
+                        ReportCondition.Id = DataService.AddMetadata(strReportCondition, MetaDataType.ReportCondition, "导入数据自动创建");
+                    }
+                    project.ReportCondition = ReportCondition.Id;
 
 
+                    var Place = DataService.GetMetadata(strPlace, MetaDataType.Place);
+                    if (Place == null)
+                    {
+                        Place = new PropertyMetadata();
+                        Place.Id = DataService.AddMetadata(strPlace, MetaDataType.Place, "导入数据自动创建");
+                    }
+                    project.Place = Place.Id;
 
 
+                    var BuildStruct = DataService.GetMetadata(strBuildStruct, MetaDataType.BuildStruct);
+                    if (BuildStruct == null)
+                    {
+                        BuildStruct = new PropertyMetadata();
+                        BuildStruct.Id = DataService.AddMetadata(strBuildStruct, MetaDataType.BuildStruct, "导入数据自动创建");
+                    }
+                    project.BuildStruct = BuildStruct.Id;
 
+                    DataService.AddProject(project);
 
+                    line++;
+                    row = sheet.GetRow(line) as XSSFRow;
+                }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            }
+        }
 
 
         #endregion
 
-        private void label6_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-
+            IWorkbook workbook = new XSSFWorkbook();
+            ISheet sheet1 = workbook.CreateSheet("Sheet1");
+            int x = 1;
+            for (int i = 0; i < 15; i++)
+            {
+                IRow row = sheet1.CreateRow(i);
+                for (int j = 0; j < 15; j++)
+                {
+                    ICell cell = row.CreateCell(j);
+                    if (x % 2 == 0)
+                    {
+                        //fill background with blue
+                        ICellStyle style1 = workbook.CreateCellStyle();
+                        style1.FillForegroundColor = NPOI.HSSF.Util.HSSFColor.Blue.Index2;
+                        style1.FillPattern = FillPattern.SolidForeground;
+                        cell.CellStyle = style1;
+                    }
+                    else
+                    {
+                        //fill background with yellow
+                        ICellStyle style1 = workbook.CreateCellStyle();
+                        style1.FillForegroundColor = NPOI.HSSF.Util.HSSFColor.Yellow.Index2;
+                        style1.FillPattern = FillPattern.SolidForeground;
+                        cell.CellStyle = style1;
+                    }
+                    x++;
+                }
+            }
+            FileStream sw = File.Create("test.xlsx");
+            workbook.Write(sw);
+            sw.Close();
         }
     }
 }

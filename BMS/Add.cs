@@ -45,13 +45,10 @@ namespace BMS
                     Code = txtCode.Text.Trim(),
                     ProjectName = txtProjectName.Text.Trim(),
                     Address = txtAddress.Text.Trim(),
-                    Place = cobxPlace.SelectedValue.ToInt(),
                     BuildUnit = txtBuildUnit.Text.Trim(),
-                    ConstructUnit = cobxConstructUnit.SelectedValue.ToInt(),
-                    DesignUnit = cobxDesignUnit.SelectedValue.ToInt(),
+                    Place = cobxPlace.SelectedValue.ToInt(),
                     BuildStruct = cobxBuildStruct.SelectedValue.ToInt(),
                     ReportCondition = cobxReportCondition.SelectedValue.ToInt(),
-                    SupervisorUnit = cobxSupervisorUnit.SelectedValue.ToInt(),
                     WorkChargre = txtWorkChargre.Text.Trim(),
                     Contact = txtContact.Text.Trim(),
                     ProjectDesc = txtProjectDesc.Text.Trim(),
@@ -62,9 +59,27 @@ namespace BMS
                     InvestigateCase = txtInvestigateCase.Text.Trim(),
                     Remark = txtRemark.Text.Trim()
                 };
+
+                if (cobxConstructUnit.SelectedValue != null)
+                {
+                    project.ConstructUnit = cobxConstructUnit.SelectedValue.ToInt(); 
+                }
+
+                if (cobxDesignUnit.SelectedValue != null)
+                {
+                    project.DesignUnit = cobxDesignUnit.SelectedValue.ToInt();
+                }
+
+                if (cobxSupervisorUnit.SelectedValue != null)
+                {
+                    project.SupervisorUnit = cobxSupervisorUnit.SelectedValue.ToInt();
+                }
+
                 if (SaveProject(project))
                 {
                     MessageBox.Show("保存成功", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
                 }
             }
         }
@@ -105,11 +120,8 @@ namespace BMS
                     txtAddress.Text = project.Address;
                     cobxPlace.SelectedValue = project.Place;
                     txtBuildUnit.Text = project.BuildUnit;
-                    cobxConstructUnit.SelectedValue = project.ConstructUnit;
-                    cobxDesignUnit.SelectedValue = project.DesignUnit;
                     cobxBuildStruct.SelectedValue = project.BuildStruct;
                     cobxReportCondition.SelectedValue = project.ReportCondition;
-                    cobxSupervisorUnit.SelectedValue = project.SupervisorUnit;
                     txtWorkChargre.Text = project.WorkChargre;
                     txtContact.Text = project.Contact;
                     txtProjectDesc.Text = project.ProjectDesc;
@@ -119,6 +131,21 @@ namespace BMS
                     txtBuildArea.Text = project.BuildArea;
                     txtInvestigateCase.Text = project.InvestigateCase;
                     txtRemark.Text = project.Remark;
+
+                    if (project.ConstructUnit > 0)
+                    {
+                        cobxConstructUnit.SelectedValue = project.ConstructUnit;
+                    }
+
+                    if (project.DesignUnit > 0)
+                    {
+                        cobxDesignUnit.SelectedValue = project.DesignUnit;
+                    }
+
+                    if (project.SupervisorUnit > 0)
+                    {
+                        cobxSupervisorUnit.SelectedValue = project.SupervisorUnit;
+                    }
                 }
             }
             txtProjectName.Focus();
@@ -129,44 +156,7 @@ namespace BMS
             {
                 MessageBox.Show("请输入工程名称", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
-            }
-            if (string.IsNullOrEmpty(txtCode.Text.Trim()))
-            {
-                MessageBox.Show("请输入编码", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-
-            if (string.IsNullOrEmpty(cobxPlace.Text.Trim()))
-            {
-                MessageBox.Show("请选择所属地", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            if (string.IsNullOrEmpty(cobxReportCondition.Text.Trim()))
-            {
-                MessageBox.Show("请选择报建情况", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            if (string.IsNullOrEmpty(cobxBuildStruct.Text.Trim()))
-            {
-                MessageBox.Show("请选择建筑结构", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-
-            if (string.IsNullOrEmpty(cobxDesignUnit.Text.Trim()))
-            {
-                MessageBox.Show("请选择输入/选择设计单位", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            if (string.IsNullOrEmpty(cobxConstructUnit.Text.Trim()))
-            {
-                MessageBox.Show("请选择输入/选择施工单位", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
-            if (string.IsNullOrEmpty(cobxSupervisorUnit.Text.Trim()))
-            {
-                MessageBox.Show("请选择输入/选择监理单位", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
-            }
+            }          
 
             if (!string.IsNullOrEmpty(txtProjectName.Text.Trim()))
             {
@@ -209,12 +199,13 @@ namespace BMS
                     }
                 }
             }
+
             if (cobxDesignUnit.SelectedValue == null && !string.IsNullOrEmpty(cobxDesignUnit.Text.Trim()))
             {
                 var list = new PropertyMetadata[cobxDesignUnit.Items.Count];
                 cobxDesignUnit.Items.CopyTo(list, 0);
 
-                if (list.Any(x=>x.Name == cobxDesignUnit.Text.Trim()))
+                if (list.Any(x => x.Name == cobxDesignUnit.Text.Trim()))
                 {
                     cobxDesignUnit.SelectedValue = list.FirstOrDefault(x => x.Name == cobxDesignUnit.Text.Trim()).Id;
                     return true;
