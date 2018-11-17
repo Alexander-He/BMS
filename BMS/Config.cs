@@ -143,7 +143,7 @@ namespace BMS
         private void cobxMetedataType_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtName.Text = string.Empty;
-            txtRemark.Text = string.Empty; 
+            txtRemark.Text = string.Empty;
             LoadMetaDataItems();
             txtName.Focus();
         }
@@ -183,6 +183,26 @@ namespace BMS
                     txtName.Text = item.Name;
                     txtRemark.Text = item.Remark;
                 }
+            }
+        }
+
+        private void Config_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+            {
+                btnAdd_Click(null,null);
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                btnSave_Click(null, null);
+            } 
+            else if (e.KeyCode == Keys.F3)
+            {
+                btnDel_Click(null, null);
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
             }
         }
     }

@@ -28,6 +28,7 @@ namespace BMS
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.ofd = new System.Windows.Forms.DataGridView();
             this.ProjectId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -93,7 +94,8 @@ namespace BMS
             this.sfd = new System.Windows.Forms.SaveFileDialog();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.button1 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.txtMsg = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ofd)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -536,55 +538,60 @@ namespace BMS
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Î¢ÈíÑÅºÚ", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnAdd.ForeColor = System.Drawing.Color.Blue;
             this.btnAdd.Location = new System.Drawing.Point(15, 54);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(109, 40);
             this.btnAdd.TabIndex = 21;
-            this.btnAdd.Text = "ÐÂÔö";
+            this.btnAdd.Text = "ÐÂÔö(F1)";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Î¢ÈíÑÅºÚ", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnDelete.ForeColor = System.Drawing.Color.Blue;
             this.btnDelete.Location = new System.Drawing.Point(245, 54);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(109, 40);
             this.btnDelete.TabIndex = 22;
-            this.btnDelete.Text = "É¾³ý";
+            this.btnDelete.Text = "É¾³ý(F3)";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
             this.btnUpdate.Font = new System.Drawing.Font("Î¢ÈíÑÅºÚ", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnUpdate.ForeColor = System.Drawing.Color.Blue;
             this.btnUpdate.Location = new System.Drawing.Point(130, 54);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(109, 40);
             this.btnUpdate.TabIndex = 24;
-            this.btnUpdate.Text = "ÐÞ¸Ä";
+            this.btnUpdate.Text = "ÐÞ¸Ä(F2)";
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnConfig
             // 
             this.btnConfig.Font = new System.Drawing.Font("Î¢ÈíÑÅºÚ", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnConfig.ForeColor = System.Drawing.Color.Blue;
             this.btnConfig.Location = new System.Drawing.Point(360, 54);
             this.btnConfig.Name = "btnConfig";
             this.btnConfig.Size = new System.Drawing.Size(109, 40);
             this.btnConfig.TabIndex = 25;
-            this.btnConfig.Text = "ÅäÖÃ";
+            this.btnConfig.Text = "ÅäÖÃ(F4)";
             this.btnConfig.UseVisualStyleBackColor = true;
             this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
             // 
             // btnExport
             // 
             this.btnExport.Font = new System.Drawing.Font("Î¢ÈíÑÅºÚ", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnExport.ForeColor = System.Drawing.Color.Blue;
             this.btnExport.Location = new System.Drawing.Point(475, 54);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(109, 40);
             this.btnExport.TabIndex = 28;
-            this.btnExport.Text = "µ¼³ö";
+            this.btnExport.Text = "µ¼³ö(F5)";
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
@@ -639,11 +646,12 @@ namespace BMS
             // btnImport
             // 
             this.btnImport.Font = new System.Drawing.Font("Î¢ÈíÑÅºÚ", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnImport.ForeColor = System.Drawing.Color.Blue;
             this.btnImport.Location = new System.Drawing.Point(590, 66);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(109, 28);
             this.btnImport.TabIndex = 35;
-            this.btnImport.Text = "µ¼Èë";
+            this.btnImport.Text = "µ¼Èë(F6)";
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
@@ -728,23 +736,28 @@ namespace BMS
             // 
             this.openFileDialog.Filter = "Excel ÎÄ¼þ|*.xlsx";
             // 
-            // button1
+            // timer1
             // 
-            this.button1.Location = new System.Drawing.Point(1187, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 38;
-            this.button1.Text = "test";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // txtMsg
+            // 
+            this.txtMsg.Font = new System.Drawing.Font("Î¢ÈíÑÅºÚ", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtMsg.ForeColor = System.Drawing.Color.Red;
+            this.txtMsg.Location = new System.Drawing.Point(1186, 5);
+            this.txtMsg.Multiline = true;
+            this.txtMsg.Name = "txtMsg";
+            this.txtMsg.Size = new System.Drawing.Size(425, 89);
+            this.txtMsg.TabIndex = 38;
+            this.txtMsg.Text = "asdasdsadasd";
+            this.txtMsg.Visible = false;
             // 
             // Main
             // 
-            this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1623, 772);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.txtMsg);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnImport);
@@ -774,10 +787,12 @@ namespace BMS
             this.Controls.Add(this.txtKey);
             this.Controls.Add(this.btnSearch);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BMS";
             this.Load += new System.EventHandler(this.Main_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.ofd)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -851,7 +866,8 @@ namespace BMS
         private System.Windows.Forms.SaveFileDialog sfd;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.TextBox txtMsg;
     }
 }
 

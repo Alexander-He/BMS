@@ -62,7 +62,7 @@ namespace BMS
 
                 if (cobxConstructUnit.SelectedValue != null)
                 {
-                    project.ConstructUnit = cobxConstructUnit.SelectedValue.ToInt(); 
+                    project.ConstructUnit = cobxConstructUnit.SelectedValue.ToInt();
                 }
 
                 if (cobxDesignUnit.SelectedValue != null)
@@ -156,7 +156,7 @@ namespace BMS
             {
                 MessageBox.Show("请输入工程名称", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
-            }          
+            }
 
             if (!string.IsNullOrEmpty(txtProjectName.Text.Trim()))
             {
@@ -292,6 +292,16 @@ namespace BMS
             }
         }
 
-        #endregion 
+        #endregion
+
+        private void Add_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnSave_Click(null, null);
+            }
+            else if (e.KeyCode == Keys.Escape)
+                this.Close();
+        }
     }
 }

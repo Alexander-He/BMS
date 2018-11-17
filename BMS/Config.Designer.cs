@@ -110,11 +110,13 @@ namespace BMS
             // 
             // btnSave
             // 
+            this.btnSave.Font = new System.Drawing.Font("Î¢ÈíÑÅºÚ", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSave.ForeColor = System.Drawing.Color.Blue;
             this.btnSave.Location = new System.Drawing.Point(304, 142);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 56);
             this.btnSave.TabIndex = 6;
-            this.btnSave.Text = "±£´æ";
+            this.btnSave.Text = "±£´æ(Enter)";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -136,21 +138,25 @@ namespace BMS
             // 
             // btnDel
             // 
+            this.btnDel.Font = new System.Drawing.Font("Î¢ÈíÑÅºÚ", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnDel.ForeColor = System.Drawing.Color.Blue;
             this.btnDel.Location = new System.Drawing.Point(304, 308);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(75, 56);
             this.btnDel.TabIndex = 3;
-            this.btnDel.Text = "É¾³ý";
+            this.btnDel.Text = "É¾³ý(F3)";
             this.btnDel.UseVisualStyleBackColor = true;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // btnAdd
             // 
+            this.btnAdd.Font = new System.Drawing.Font("Î¢ÈíÑÅºÚ", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnAdd.ForeColor = System.Drawing.Color.Blue;
             this.btnAdd.Location = new System.Drawing.Point(304, 80);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 56);
             this.btnAdd.TabIndex = 1;
-            this.btnAdd.Text = "ÐÂÔö";
+            this.btnAdd.Text = "ÐÂÔö(F1)";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -178,14 +184,17 @@ namespace BMS
             // 
             // Config
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1072, 540);
             this.Controls.Add(this.gbxPlaceBelong);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "Config";
             this.Text = "ÅäÖÃ";
             this.Load += new System.EventHandler(this.Config_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Config_KeyDown);
             this.gbxPlaceBelong.ResumeLayout(false);
             this.gbxPlaceBelong.PerformLayout();
             this.ResumeLayout(false);

@@ -450,11 +450,13 @@ namespace BMS
             // 
             // btnSave
             // 
+            this.btnSave.Font = new System.Drawing.Font("Î¢ÈíÑÅºÚ", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSave.ForeColor = System.Drawing.Color.Blue;
             this.btnSave.Location = new System.Drawing.Point(8, 479);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(74, 54);
+            this.btnSave.Size = new System.Drawing.Size(116, 54);
             this.btnSave.TabIndex = 0;
-            this.btnSave.Text = "±£´æ";
+            this.btnSave.Text = "±£´æ(Enter)";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -467,9 +469,11 @@ namespace BMS
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gbRecordArea);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "Add";
             this.Text = "Modify";
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Add_KeyDown);
             this.gbRecordArea.ResumeLayout(false);
             this.gbRecordArea.PerformLayout();
             this.ResumeLayout(false);
